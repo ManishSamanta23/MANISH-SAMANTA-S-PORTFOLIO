@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish Samanta's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #2d2d2d;
+            background: linear-gradient(180deg, #f5e6ff, #e6faff);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-theme {
+            background: linear-gradient(180deg, #1a0033, #003366);
+            color: #e6faff;
+        }
+
+        nav {
+            background: linear-gradient(90deg, #ff4d4d, #ff914d, #ffd24d);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ffe680;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-theme nav {
+            background: linear-gradient(90deg, #6a00b3, #00b7eb, #00e676);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #b3ff66;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffe680;
+            transform: scale(1.1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: #fff;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            color: #ffe680;
+            transform: rotate(360deg);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #ff4d4d, #ff914d, #ffd24d, #4dff4d);
+            color: #fff;
+            padding: 0 2rem;
+            border-bottom: 4px solid #ffe680;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .hero {
+            background: linear-gradient(135deg, #6a00b3, #00b7eb, #00e676, #b3ff66);
+            border-bottom: 4px solid #b3ff66;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 6px solid #ffe680;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 230, 128, 0.5);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-theme .profile-pic {
+            border-color: #b3ff66;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(179, 255, 102, 0.5);
+        }
+
+        .about {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #fff, #f5e6ff);
+            text-align: center;
+            border-bottom: 3px solid #ff914d;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-theme .about {
+            background: linear-gradient(180deg, #2a1a4d, #1a0033);
+            border-bottom: 3px solid #00e676;
+        }
+
+        .about h2 {
+            font-size: 2.7rem;
+            margin-bottom: 2rem;
+            color: #ff4d4d;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .about h2 {
+            color: #b3ff66;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        body.dark-theme .about p {
+            color: #d0e6ff;
+            background: rgba(42, 26, 77, 0.8);
+        }
+
+        .skills {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #f5e6ff, #e6faff);
+            text-align: center;
+            border-bottom: 3px solid #ffd24d;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .skills {
+            background: linear-gradient(180deg, #1a0033, #003366);
+            border-bottom: 3px solid #00b7eb;
+        }
+
+        .skills h2 {
+            font-size: 2.7rem;
+            margin-bottom: 2rem;
+            color: #ff4d4d;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .skills h2 {
+            color: #b3ff66;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, #ff914d, #ffd24d);
+            color: #fff;
+            padding: 1rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 210, 77, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #ffe680;
+            touch-action: manipulation;
+        }
+
+        body.dark-theme .skill-badge {
+            background: linear-gradient(135deg, #00b7eb, #00e676);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 230, 118, 0.3);
+            border: 2px solid #b3ff66;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 210, 77, 0.5);
+        }
+
+        body.dark-theme .skill-badge:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 230, 118, 0.5);
+        }
+
+        .skill-badge[data-skill="HTML"].clicked {
+            animation: blink-html 0.6s ease-in-out;
+        }
+        @keyframes blink-html {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #4d94ff, #80b3ff); }
+        }
+        body.dark-theme .skill-badge[data-skill="HTML"].clicked {
+            animation: blink-html-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-html-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #0066cc, #3399ff); }
+        }
+
+        .skill-badge[data-skill="CSS"].clicked {
+            animation: blink-css 0.6s ease-in-out;
+        }
+        @keyframes blink-css {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #4dff4d, #80ff80); }
+        }
+        body.dark-theme .skill-badge[data-skill="CSS"].clicked {
+            animation: blink-css-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-css-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #00e676, #66ff66); }
+        }
+
+        .skill-badge[data-skill="JavaScript"].clicked {
+            animation: blink-js 0.6s ease-in-out;
+        }
+        @keyframes blink-js {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #ffd24d, #ffff80); }
+        }
+        body.dark-theme .skill-badge[data-skill="JavaScript"].clicked {
+            animation: blink-js-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-js-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #b3ff66, #e6ff99); }
+        }
+
+        .skill-badge[data-skill="Python"].clicked {
+            animation: blink-python 0.6s ease-in-out;
+        }
+        @keyframes blink-python {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #ff4d94, #ff80b3); }
+        }
+        body.dark-theme .skill-badge[data-skill="Python"].clicked {
+            animation: blink-python-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-python-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #ff3399, #ff66b3); }
+        }
+
+        .skill-badge[data-skill="MySQL"].clicked {
+            animation: blink-mysql 0.6s ease-in-out;
+        }
+        @keyframes blink-mysql {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #b34dff, #cc80ff); }
+        }
+        body.dark-theme .skill-badge[data-skill="MySQL"].clicked {
+            animation: blink-mysql-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-mysql-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #9933ff, #cc66ff); }
+        }
+
+        .skill-badge[data-skill="C"].clicked {
+            animation: blink-c 0.6s ease-in-out;
+        }
+        @keyframes blink-c {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #4dffff, #80ffff); }
+        }
+        body.dark-theme .skill-badge[data-skill="C"].clicked {
+            animation: blink-c-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-c-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #00cccc, #66ffff); }
+        }
+
+        .skill-badge[data-skill="C++"].clicked {
+            animation: blink-cpp 0.6s ease-in-out;
+        }
+        @keyframes blink-cpp {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #ff914d, #ffb380); }
+        }
+        body.dark-theme .skill-badge[data-skill="C++"].clicked {
+            animation: blink-cpp-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-cpp-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #0099cc, #33ccff); }
+        }
+
+        .skill-badge[data-skill="Flutter"].clicked {
+            animation: blink-flutter 0.6s ease-in-out;
+        }
+        @keyframes blink-flutter {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #ff4d4d, #ff8080); }
+        }
+        body.dark-theme .skill-badge[data-skill="Flutter"].clicked {
+            animation: blink-flutter-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-flutter-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #cc33ff, #ff66ff); }
+        }
+
+        .skill-badge[data-skill="Git"].clicked {
+            animation: blink-git 0.6s ease-in-out;
+        }
+        @keyframes blink-git {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #4d4dff, #8080ff); }
+        }
+        body.dark-theme .skill-badge[data-skill="Git"].clicked {
+            animation: blink-git-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-git-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #00b7eb, #66ccff); }
+        }
+
+        .skill-badge[data-skill="GitHub"].clicked {
+            animation: blink-github 0.6s ease-in-out;
+        }
+        @keyframes blink-github {
+            0%, 100% { background: linear-gradient(135deg, #ff914d, #ffd24d); }
+            50% { background: linear-gradient(135deg, #4dffff, #80ff80); }
+        }
+        body.dark-theme .skill-badge[data-skill="GitHub"].clicked {
+            animation: blink-github-dark 0.6s ease-in-out;
+        }
+        @keyframes blink-github-dark {
+            0%, 100% { background: linear-gradient(135deg, #00b7eb, #00e676); }
+            50% { background: linear-gradient(135deg, #00e676, #66ff66); }
+        }
+
+        .projects {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #e6faff, #f5e6ff);
+            text-align: center;
+            border-bottom: 3px solid #ff4d4d;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .projects {
+            background: linear-gradient(180deg, #003366, #1a0033);
+            border-bottom: 3px solid #6a00b3;
+        }
+
+        .projects h2 {
+            font-size: 2.7rem;
+            margin-bottom: 2rem;
+            color: #ff4d4d;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .projects h2 {
+            color: #b3ff66;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 77, 77, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+            position: relative;
+            border: 2px solid #ff914d;
+        }
+
+        body.dark-theme .project-card {
+            background: #2a1a4d;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 15px rgba(106, 0, 179, 0.3);
+            border: 2px solid #00b7eb;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 77, 77, 0.5);
+        }
+
+        body.dark-theme .project-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(106, 0, 179, 0.5);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover img {
+            opacity: 0.85;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            padding: 1rem;
+            color: #ff4d4d;
+        }
+
+        body.dark-theme .project-card h3 {
+            color: #b3ff66;
+        }
+
+        .project-card p {
+            padding: 0 1rem 1rem;
+            color: #4a4a4a;
+        }
+
+        body.dark-theme .project-card p {
+            color: #d0e6ff;
+        }
+
+        .contact {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #fff, #f5e6ff);
+            text-align: center;
+            border-bottom: 3px solid #ffd24d;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .contact {
+            background: linear-gradient(180deg, #2a1a4d, #1a0033);
+            border-bottom: 3px solid #00e676;
+        }
+
+        .contact h2 {
+            font-size: 2.7rem;
+            margin-bottom: 1rem;
+            color: #ff4d4d;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .contact h2 {
+            color: #b3ff66;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem;
+            border-radius: 10px;
+        }
+
+        body.dark-theme .contact p {
+            color: #d0e6ff;
+            background: rgba(42, 26, 77, 0.8);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            font-size: 2.5rem;
+            color: #ff4d4d;
+            transition: color 0.3s, transform 0.3s;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-theme .social-links a {
+            color: #b3ff66;
+        }
+
+        .social-links a:hover {
+            color: #ffe680;
+            transform: scale(1.3) rotate(5deg);
+        }
+
+        .chat-bubble {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #ff4d4d, #ffd24d);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 77, 77, 0.4);
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #ffe680;
+            touch-action: manipulation;
+        }
+
+        body.dark-theme .chat-bubble {
+            background: linear-gradient(135deg, #6a00b3, #00e676);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(106, 0, 179, 0.4);
+            border: 2px solid #b3ff66;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 77, 77, 0.6);
+        }
+
+        body.dark-theme .chat-bubble:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 25px rgba(106, 0, 179, 0.6);
+        }
+
+        .chatbot-overlay {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 2rem;
+            width: 350px;
+            max-height: 500px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 77, 77, 0.3);
+            z-index: 1000;
+            overflow: hidden;
+            flex-direction: column;
+            transition: background 0.3s;
+            border: 2px solid #ff914d;
+        }
+
+        body.dark-theme .chatbot-overlay {
+            background: #2a1a4d;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(106, 0, 179, 0.3);
+            border: 2px solid #00b7eb;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #ff4d4d, #ffd24d);
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 2px solid #ffe680;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .chatbot-header {
+            background: linear-gradient(135deg, #6a00b3, #00e676);
+            border-bottom: 2px solid #b3ff66;
+        }
+
+        .chatbot-profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffe680;
+            box-shadow: 0 0 10px rgba(255, 230, 128, 0.5);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-theme .chatbot-profile-pic {
+            border-color: #b3ff66;
+            box-shadow: 0 0 10px rgba(179, 255, 102, 0.5);
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+            flex-grow: 1;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .chatbot-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .chatbot-close:hover {
+            color: #ffe680;
+        }
+
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f9f9ff;
+            transition: background 0.3s;
+        }
+
+        body.dark-theme .chatbot-messages {
+            background: #3c3c66;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-message {
+            align-items: flex-end;
+        }
+
+        .ai-message {
+            align-items: flex-start;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, #ff4d4d, #ffd24d);
+            color: #fff;
+        }
+
+        body.dark-theme .user-message .message-content {
+            background: linear-gradient(135deg, #6a00b3, #00e676);
+        }
+
+        .ai-message .message-content {
+            background: #e6faff;
+            color: #2d2d2d;
+        }
+
+        body.dark-theme .ai-message .message-content {
+            background: #4d4d80;
+            color: #e6faff;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .typing-indicator .message-content {
+            background: #e6faff;
+            color: #2d2d2d;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        body.dark-theme .typing-indicator .message-content {
+            background: #4d4d80;
+            color: #e6faff;
+        }
+
+        .typing-indicator .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #2d2d2d;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.2s infinite;
+        }
+
+        body.dark-theme .typing-indicator .dot {
+            background: #e6faff;
+        }
+
+        .typing-indicator .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 20% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-5px); opacity: 0.5; }
+            80%, 100% { transform: translateY(0); opacity: 1; }
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 2px solid #ff914d;
+            transition: border-top-color 0.3s;
+        }
+
+        body.dark-theme .chatbot-input {
+            border-top: 2px solid #00b7eb;
+        }
+
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 0.8rem;
+            border: 2px solid #ff914d;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, background 0.3s, color 0.3s;
+        }
+
+        body.dark-theme .chatbot-input input {
+            border: 2px solid #00b7eb;
+            background: #3c3c66;
+            color: #e6faff;
+        }
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, #ff4d4d, #ffd24d);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        body.dark-theme .chatbot-input button {
+            background: linear-gradient(135deg, #6a00b3, #00e676);
+        }
+
+        .chatbot-input button:hover {
+            background: linear-gradient(135deg, #ffe680, #ffffb3);
+            transform: scale(1.1);
+        }
+
+        body.dark-theme .chatbot-input button:hover {
+            background: linear-gradient(135deg, #b3ff66, #e6ff99);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .profile-pic {
+                width: 130px;
+                height: 130px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links a, .nav-links .theme-toggle {
+                margin-left: 1rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .chat-bubble {
+                font-size: 0.9rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .chatbot-overlay {
+                width: 90%;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .profile-pic {
+                width: 110px;
+                height: 110px;
+            }
+
+            .about h2, .skills h2, .projects h2, .contact h2 {
+                font-size: 2.2rem;
+            }
+
+            .chatbot-overlay {
+                bottom: 70px;
+                max-height: 400px;
+            }
+
+            .chatbot-profile-pic {
+                width: 30px;
+                height: 30px;
+            }
+
+            .social-links a {
+                font-size: 2rem;
+            }
+            .github-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .github-link:hover {
+             background-color: #555;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Manish Samanta's Portfolio</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <button class="theme-toggle" title="Toggle Theme">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="20240212_172736.jpg" alt="Profile Picture" class="profile-pic">
+            <h1>Hi, I'm Manish Samanta</h1>
+            <p>WEB DEVELOPER</p>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>Hi, I'm Manish Samanta — a tech enthusiast with a passion for Web Development and Generative AI. I'm currently pursuing my B.Tech in Computer Science and Engineering at Sister Nivedita University, and I’ll be graduating in 2027.</p>
+        <p>I'm continuously building my skills in HTML, CSS, JavaScript, Python, and MySQL, along with a strong foundation in C and C++. I'm also exploring the world of AI tools, learning about machine learning, and diving into Flutter to develop modern cross-platform mobile apps.</p>
+        <p>I enjoy learning new technologies, staying updated with the latest trends, and turning creative ideas into real, smart digital solutions. For me, tech is not just a career path — it’s a passion I’m excited to grow with every day.</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-badge" data-skill="HTML">HTML</div>
+            <div class="skill-badge" data-skill="CSS">CSS</div>
+            <div class="skill-badge" data-skill="JavaScript">JavaScript</div>
+            <div class="skill-badge" data-skill="Python">Python</div>
+            <div class="skill-badge" data-skill="MySQL">MySQL</div>
+            <div class="skill-badge" data-skill="C">C</div>
+            <div class="skill-badge" data-skill="C++">C++</div>
+            <div class="skill-badge" data-skill="Flutter">Flutter</div>
+            <div class="skill-badge" data-skill="Git">Git</div>
+            <div class="skill-badge" data-skill="GitHub">GitHub</div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <img src="image1.png" alt="Scientific Calculator">
+            <h3>Scientific Calculator</h3>
+            <p>A web-based calculator with advanced mathematical functions like trigonometry and logarithms.</p>
+            <a href="https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git" class="github-link" >View on GitHub</a>
+        </div>
+        <div class="project-card">
+            <img src="image2.png" alt="Age Calculator">
+            <h3>Age Calculator</h3>
+            <p>An application to calculate age based on date of birth with multilingual support.</p>
+            <a href="https://github.com/ManishSamanta23/AGE_CALCULATOR.git" class="github-link">View on GitHub</a>
+        </div>
+        <div class="project-card">
+            <img src="image3.png" alt="Tic-Tac-Toe Game">
+            <h3>Tic-Tac-Toe Game</h3>
+            <p>A classic two-player game with a responsive and interactive interface.</p>
+            <a href="https://github.com/ManishSamanta23/tic_tac_toe_game.git" class="github-link" > View on GitHub</a>
+        </div>
+    </div>
+</section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for collaborations or just a chat!</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/manish-samanta-660379294"  title="LinkedIn">🔗</a>
+            <a href="https://github.com/ManishSamanta23" title="GitHub">🐙</a>
+        </div>
+    </section>
+
+    <div class="chat-bubble">Ask anything about me</div>
+
+    <div class="chatbot-overlay">
+        <div class="chatbot-header">
+            <img src="20240212_172736.jpg" alt="Profile Picture" class="chatbot-profile-pic">
+            <h3>Chat with Me</h3>
+            <span class="chatbot-close">×</span>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message ai-message">
+                <div class="message-content">Hi, I am Manish Samanta, what do you want to know about me?</div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type a message...">
+            <button>➤</button>
+        </div>
+    </div>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCxFhhLpE267xyrY1xqJ-8o8uDn_tW8v-M",
+    authDomain: "manish-samanta-protfilio.firebaseapp.com",
+    projectId: "manish-samanta-protfilio",
+    storageBucket: "manish-samanta-protfilio.firebasestorage.app",
+    messagingSenderId: "997974449913",
+    appId: "1:997974449913:web:4b791ad18d9264b3f78c28",
+    measurementId: "G-XHYB0QSB0N"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            themeToggle.textContent = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        });
+
+        // Skill badge click/touch animation
+        const skillBadges = document.querySelectorAll('.skill-badge');
+        skillBadges.forEach(badge => {
+            const handleInteraction = () => {
+                badge.classList.add('clicked');
+                setTimeout(() => {
+                    badge.classList.remove('clicked');
+                }, 600);
+            };
+            badge.addEventListener('click', handleInteraction);
+            badge.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                handleInteraction();
+            });
+        });
+
+        // Chatbot functionality
+        const chatBubble = document.querySelector('.chat-bubble');
+        const chatbotOverlay = document.querySelector('.chatbot-overlay');
+        const chatbotClose = document.querySelector('.chatbot-close');
+        const chatInput = document.querySelector('.chatbot-input input');
+        const sendButton = document.querySelector('.chatbot-input button');
+        const chatMessages = document.querySelector('.chatbot-messages');
+
+        // Gemini API configuration
+        const GEMINI_API_KEY = 'AIzaSyA2G6o3rzQlLI2VnblwFjZAt_KHUGMc7aA'; // Replace with your API key for testing, then REMOVE before sharing
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+        const myDescription = "I'm Manish Samanta, a B.Tech Computer Science and Engineering student at Sister Nivedita University, set to graduate in 2027. I'm deeply passionate about technology, especially in areas like Web Development and Generative AI. I enjoy building responsive and user-friendly websites using HTML, CSS, and JavaScript, while also expanding my skills in Python, MySQL, and exploring AI tools and machine learning models. I'm currently learning Flutter to create cross-platform mobile applications, and I have a solid foundation in C and C++, which has helped me develop strong logical thinking and problem-solving abilities. I'm always eager to learn new things, stay updated with the latest tech trends, and turn creative ideas into real-world digital solutions. I believe in continuous learning, consistent improvement, and building technology with purpose and curiosity. Outside of my academic and coding interests, I enjoy watching cricket, playing both cricket and football, and traveling to new places to experience different cultures and perspectives. I also love listening to music and occasionally designing simple UI layouts for fun, which helps me stay creative and balanced. With a positive mindset and a strong passion for innovation, I’m excited about the journey ahead in the world of tech.";
+
+        // Reset chatbot messages to initial message
+        function resetChatMessages() {
+            chatMessages.innerHTML = `
+                <div class="message ai-message">
+                    <div class="message-content">Hi, I am Manish Samanta, what do you want to know about me?</div>
+                </div>
+            `;
+        }
+
+        // Toggle chatbot overlay
+        const toggleChatbot = () => {
+            chatbotOverlay.style.display = chatbotOverlay.style.display === 'flex' ? 'none' : 'flex';
+            chatBubble.style.display = chatbotOverlay.style.display === 'flex' ? 'none' : 'block';
+            if (chatbotOverlay.style.display === 'flex') {
+                resetChatMessages();
+            }
+        };
+
+        chatBubble.addEventListener('click', toggleChatbot);
+        chatBubble.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            toggleChatbot();
+        });
+
+        chatbotClose.addEventListener('click', toggleChatbot);
+
+        // Mock response fallback
+        function getMockResponse(message) {
+            return "This is a demo response. Direct Gemini API calls may fail due to CORS or security restrictions. Use a backend for secure API access.";
+        }
+
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingMessage = document.createElement('div');
+            typingMessage.classList.add('typing-indicator');
+            typingMessage.innerHTML = `
+                <div class="message-content">
+                    Typing <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            `;
+            chatMessages.appendChild(typingMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingMessage;
+        }
+
+        // Remove typing indicator
+        function removeTypingIndicator(typingMessage) {
+            if (typingMessage && typingMessage.parentNode) {
+                typingMessage.parentNode.removeChild(typingMessage);
+            }
+        }
+
+        // Send message
+        async function sendMessage() {
+            const messageText = chatInput.value.trim();
+            if (!messageText) return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.innerHTML = `<div class="message-content">${messageText}</div>`;
+            chatMessages.appendChild(userMessage);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show typing indicator
+            const typingMessage = showTypingIndicator();
+
+            // Try direct Gemini API call
+            try {
+                const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `User_message:${messageText}. Reply naturally to the usermessage and if required then answer based on: ${myDescription} or just simply give friendly reply .and reply in a way that Manish Samanta is himself talking .reply in short sentences`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                if (!data.candidates || !data.candidates[0]?.content?.parts[0]?.text) {
+                    throw new Error('Invalid API response');
+                }
+
+                const reply = data.candidates[0].content.parts[0].text;
+
+                // Remove typing indicator and add AI response
+                removeTypingIndicator(typingMessage);
+                const aiMessage = document.createElement('div');
+                aiMessage.classList.add('message', 'ai-message');
+                aiMessage.innerHTML = `<div class="message-content">${reply}</div>`;
+                chatMessages.appendChild(aiMessage);
+            } catch (error) {
+                // Remove typing indicator and fallback to mock response
+                removeTypingIndicator(typingMessage);
+                console.error('Error calling Gemini API:', error.message);
+                const aiMessage = document.createElement('div');
+                aiMessage.classList.add('message', 'ai-message');
+                aiMessage.innerHTML = `<div class="message-content">${getMockResponse(messageText)}</div>`;
+                chatMessages.appendChild(aiMessage);
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        sendButton.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            sendMessage();
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
