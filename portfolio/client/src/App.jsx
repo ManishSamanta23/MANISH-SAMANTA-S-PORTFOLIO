@@ -104,6 +104,12 @@ function App() {
 
   return (
     <>
+      <div className="bg-blobs" aria-hidden="true">
+        <span className="blob blob-a" />
+        <span className="blob blob-b" />
+        <span className="blob blob-c" />
+      </div>
+
       <nav>
         <div className="nav-container">
           <div className="logo">{portfolio.name}'s Portfolio</div>
@@ -121,25 +127,27 @@ function App() {
       </nav>
 
       <section id="home" className="hero">
-        <div className="hero-content">
+        <div className="hero-content reveal-up">
           <img src={portfolio.heroImage} alt="Profile" className="profile-pic" />
           <h1>Hi, I&apos;m {portfolio.name}</h1>
-          <p>{portfolio.role.toUpperCase()}</p>
+          <p className="hero-role">{portfolio.role.toUpperCase()}</p>
         </div>
       </section>
 
       <section id="about" className="about">
-        <h2>About Me</h2>
-        {portfolio.about.map((line) => (
-          <p key={line}>{line}</p>
+        <h2 className="section-heading">About Me</h2>
+        {portfolio.about.map((line, idx) => (
+          <p key={line} className="reveal-up" style={{ animationDelay: `${idx * 120}ms` }}>
+            {line}
+          </p>
         ))}
       </section>
 
       <section id="skills" className="skills">
-        <h2>My Skills</h2>
+        <h2 className="section-heading">My Skills</h2>
         <div className="skills-grid">
-          {portfolio.skills.map((skill) => (
-            <div key={skill} className="skill-badge">
+          {portfolio.skills.map((skill, idx) => (
+            <div key={skill} className="skill-badge reveal-up" style={{ animationDelay: `${idx * 60}ms` }}>
               {skill}
             </div>
           ))}
@@ -147,10 +155,10 @@ function App() {
       </section>
 
       <section id="projects" className="projects">
-        <h2>My Projects</h2>
+        <h2 className="section-heading">My Projects</h2>
         <div className="project-grid">
-          {portfolio.projects.map((project) => (
-            <article key={project.title} className="project-card">
+          {portfolio.projects.map((project, idx) => (
+            <article key={project.title} className="project-card reveal-up" style={{ animationDelay: `${idx * 90}ms` }}>
               <img src={project.image} alt={project.title} />
               <h3>{project.title}</h3>
               <p>{project.description}</p>
@@ -163,10 +171,10 @@ function App() {
       </section>
 
       <section id="contact" className="contact">
-        <h2>Contact Me</h2>
+        <h2 className="section-heading">Contact Me</h2>
         <p>Feel free to reach out for collaborations or just a chat.</p>
 
-        <form className="contact-form" onSubmit={submitContact}>
+        <form className="contact-form reveal-up" onSubmit={submitContact}>
           <input
             type="text"
             placeholder="Your name"
