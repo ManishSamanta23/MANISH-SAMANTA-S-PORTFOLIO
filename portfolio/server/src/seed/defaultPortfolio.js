@@ -1,0 +1,47 @@
+export const defaultPortfolio = {
+  name: "Manish Samanta",
+  role: "Web Developer",
+  heroImage: "/assets/20240212_172736.jpg",
+  about: [
+    "Hi, I'm Manish Samanta - a tech enthusiast with a passion for Web Development and Generative AI. I'm currently pursuing my B.Tech in Computer Science and Engineering at Sister Nivedita University, and I'll be graduating in 2027.",
+    "I'm continuously building my skills in HTML, CSS, JavaScript, Python, and MySQL, along with a strong foundation in C and C++. I'm also exploring AI tools, learning machine learning, and diving into Flutter to develop cross-platform mobile apps.",
+    "I enjoy learning new technologies, staying updated with trends, and turning creative ideas into smart digital solutions."
+  ],
+  skills: [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python",
+    "MySQL",
+    "C",
+    "C++",
+    "Flutter",
+    "Git",
+    "GitHub"
+  ],
+  projects: [
+    {
+      title: "Scientific Calculator",
+      description: "A web-based calculator with advanced mathematical functions like trigonometry and logarithms.",
+      image: "/assets/image1.png",
+      repoUrl: "https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git"
+    },
+    {
+      title: "Age Calculator",
+      description: "An application to calculate age based on date of birth with multilingual support.",
+      image: "/assets/image2.png",
+      repoUrl: "https://github.com/ManishSamanta23/AGE_CALCULATOR.git"
+    },
+    {
+      title: "Tic-Tac-Toe Game",
+      description: "A classic two-player game with a responsive and interactive interface.",
+      image: "/assets/image3.png",
+      repoUrl: "https://github.com/ManishSamanta23/tic_tac_toe_game.git"
+    }
+  ],
+  socialLinks: {
+    linkedIn: "https://www.linkedin.com/in/manish-samanta-660379294",
+    github: "https://github.com/ManishSamanta23"
+  },
+  chatIntro: "Hi, I am Manish Samanta, what do you want to know about me?"
+};

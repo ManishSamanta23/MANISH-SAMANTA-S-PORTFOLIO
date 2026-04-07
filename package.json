@@ -1,0 +1,8 @@
+{
+  "name": "ai-walla-project-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix portfolio run dev",
+    "install:all": "npm --prefix portfolio run install:all"
+  }
+}
