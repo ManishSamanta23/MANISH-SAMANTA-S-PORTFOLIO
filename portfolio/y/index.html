@@ -236,6 +236,15 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 210, 77, 0.5);
         }
 
+        .skill-badge.clicked {
+            animation: badge-pop 0.6s ease-in-out;
+        }
+
+        @keyframes badge-pop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
         body.dark-theme .skill-badge:hover {
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 230, 118, 0.5);
         }
@@ -913,18 +922,28 @@
     <section id="about" class="about">
         <h2>About Me</h2>
         <p>Hi, I'm Manish Samanta — a tech enthusiast with a passion for Web Development and Generative AI. I'm currently pursuing my B.Tech in Computer Science and Engineering at Sister Nivedita University, and I’ll be graduating in 2027.</p>
-        <p>I'm continuously building my skills in HTML, CSS, JavaScript, Python, and MySQL, along with a strong foundation in C and C++. I'm also exploring the world of AI tools, learning about machine learning, and diving into Flutter to develop modern cross-platform mobile apps.</p>
+        <p>I'm a MERN Stack developer and I work across MongoDB, Express.js, React, and Node.js to build complete web applications. Along with MERN, I'm continuously improving in HTML, CSS, JavaScript, Python, MySQL, and I also have a strong foundation in C and C++.</p>
         <p>I enjoy learning new technologies, staying updated with the latest trends, and turning creative ideas into real, smart digital solutions. For me, tech is not just a career path — it’s a passion I’m excited to grow with every day.</p>
     </section>
 
     <section id="skills" class="skills">
         <h2>My Skills</h2>
         <div class="skills-grid">
+            <div class="skill-badge" data-skill="MERN Stack">MERN Stack</div>
+            <div class="skill-badge" data-skill="MongoDB">MongoDB</div>
+            <div class="skill-badge" data-skill="Express.js">Express.js</div>
+            <div class="skill-badge" data-skill="React.js">React.js</div>
+            <div class="skill-badge" data-skill="Node.js">Node.js</div>
             <div class="skill-badge" data-skill="HTML">HTML</div>
             <div class="skill-badge" data-skill="CSS">CSS</div>
             <div class="skill-badge" data-skill="JavaScript">JavaScript</div>
+            <div class="skill-badge" data-skill="TypeScript">TypeScript</div>
             <div class="skill-badge" data-skill="Python">Python</div>
             <div class="skill-badge" data-skill="MySQL">MySQL</div>
+            <div class="skill-badge" data-skill="REST API">REST API</div>
+            <div class="skill-badge" data-skill="Firebase">Firebase</div>
+            <div class="skill-badge" data-skill="Tailwind CSS">Tailwind CSS</div>
+            <div class="skill-badge" data-skill="Bootstrap">Bootstrap</div>
             <div class="skill-badge" data-skill="C">C</div>
             <div class="skill-badge" data-skill="C++">C++</div>
             <div class="skill-badge" data-skill="Flutter">Flutter</div>
