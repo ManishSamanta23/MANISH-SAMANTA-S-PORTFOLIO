@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const initialForm = { name: "", email: "", message: "" };
 
@@ -15,6 +15,7 @@ function App() {
   const [chatInput, setChatInput] = useState("");
   const [chatTyping, setChatTyping] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
+  const chatMessagesRef = useRef(null);
 
   useEffect(() => {
     const loadPortfolio = async () => {
@@ -39,6 +40,39 @@ function App() {
   useEffect(() => {
     document.body.classList.toggle("dark-theme", darkTheme);
   }, [darkTheme]);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".reveal-up");
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -42px 0px"
+      }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, [portfolio]);
+
+  useEffect(() => {
+    if (!chatOpen || !chatMessagesRef.current) return;
+
+    const raf = requestAnimationFrame(() => {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    });
+
+    return () => cancelAnimationFrame(raf);
+  }, [chatOpen, chatMessages, chatTyping]);
 
   const submitContact = async (e) => {
     e.preventDefault();
@@ -227,7 +261,7 @@ function App() {
             </button>
           </div>
 
-          <div className="chatbot-messages">
+          <div className="chatbot-messages" ref={chatMessagesRef}>
             {chatMessages.map((m, idx) => (
               <div className={`message ${m.role === "user" ? "user-message" : "ai-message"}`} key={`${m.role}-${idx}`}>
                 <div className="message-content">{m.content}</div>
