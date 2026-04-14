@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
 
 :root {
+  --max-width: 1180px;
   --bg: #fff8f2;
   --text: #1b1f3a;
   --muted: #4b5376;
@@ -44,6 +45,10 @@ body {
   color: var(--text);
   background: radial-gradient(circle at 10% 12%, #ffe4cc 0%, rgba(255, 228, 204, 0) 40%),
     radial-gradient(circle at 92% 28%, #d8f5f0 0%, rgba(216, 245, 240, 0) 42%), var(--bg);
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .status-screen {
@@ -104,12 +109,13 @@ nav {
 }
 
 .nav-container {
-  max-width: 1180px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 0.85rem 1.1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.8rem;
 }
 
 .logo {
@@ -123,8 +129,19 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--stroke);
+  background: var(--surface-strong);
+  color: var(--text);
+  border-radius: 0.7rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 
 .nav-links a,
@@ -147,7 +164,7 @@ nav {
 }
 
 section {
-  max-width: 1180px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 4.8rem 1.1rem;
   scroll-margin-top: 88px;
@@ -190,6 +207,12 @@ section {
   letter-spacing: 0.18em;
   color: var(--muted);
   font-weight: 600;
+}
+
+.hero-summary {
+  max-width: 52ch;
+  margin: 1rem auto 0;
+  color: var(--muted);
 }
 
 .profile-pic {
@@ -253,7 +276,7 @@ section {
   max-width: 1200px;
   margin: 2rem auto 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1rem;
 }
 
@@ -589,13 +612,42 @@ section {
 }
 
 @media (max-width: 740px) {
-  .nav-container {
-    flex-direction: column;
-    align-items: flex-start;
+  .menu-toggle {
+    display: grid;
+    place-items: center;
   }
 
   .nav-links {
-    justify-content: flex-start;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% + 0.5rem);
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.6rem;
+    border: 1px solid var(--stroke);
+    border-radius: 0.9rem;
+    background: var(--surface-strong);
+    box-shadow: var(--shadow);
+    transform-origin: top center;
+    transform: scaleY(0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .nav-links.open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links a,
+  .theme-toggle {
+    text-align: left;
+    width: 100%;
+    border-radius: 0.55rem;
+    padding: 0.56rem 0.7rem;
   }
 
   .chat-bubble {
@@ -613,6 +665,25 @@ section {
 
   section {
     padding: 3.8rem 1rem;
+  }
+
+  .hero-content {
+    border-radius: 1.4rem;
+    padding: 1.7rem 1rem;
+  }
+
+  .section-heading {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+}
+
+@media (min-width: 741px) and (max-width: 1024px) {
+  section {
+    padding: 4.2rem 1.2rem;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

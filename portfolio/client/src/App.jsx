@@ -4,6 +4,7 @@ const initialForm = { name: "", email: "", message: "" };
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [portfolio, setPortfolio] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -40,6 +41,17 @@ function App() {
   useEffect(() => {
     document.body.classList.toggle("dark-theme", darkTheme);
   }, [darkTheme]);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 900) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     const nodes = document.querySelectorAll(".reveal-up");
@@ -129,7 +141,7 @@ function App() {
   };
 
   if (loading) {
-    return <main className="status-screen">Loading your portfolio...</main>;
+    return <main className="status-screen" aria-live="polite">Loading your portfolio...</main>;
   }
 
   if (error || !portfolio) {
@@ -147,13 +159,39 @@ function App() {
       <nav>
         <div className="nav-container">
           <div className="logo">{portfolio.name}'s Portfolio</div>
-          <div className="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <button className="theme-toggle" onClick={() => setDarkTheme((v) => !v)} title="Toggle Theme">
+
+          <button
+            type="button"
+            className="menu-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((v) => !v)}
+          >
+            ☰
+          </button>
+
+          <div className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
+            <a href="#home" onClick={() => setMobileMenuOpen(false)}>
+              Home
+            </a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>
+              About
+            </a>
+            <a href="#skills" onClick={() => setMobileMenuOpen(false)}>
+              Skills
+            </a>
+            <a href="#projects" onClick={() => setMobileMenuOpen(false)}>
+              Projects
+            </a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              Contact
+            </a>
+            <button
+              className="theme-toggle"
+              type="button"
+              onClick={() => setDarkTheme((v) => !v)}
+              title="Toggle Theme"
+            >
               {darkTheme ? "☀️" : "🌙"}
             </button>
           </div>
@@ -165,6 +203,7 @@ function App() {
           <img src={portfolio.heroImage} alt="Profile" className="profile-pic" />
           <h1>Hi, I&apos;m {portfolio.name}</h1>
           <p className="hero-role">{portfolio.role.toUpperCase()}</p>
+          <p className="hero-summary">{portfolio.about?.[0]}</p>
         </div>
       </section>
 
@@ -196,9 +235,11 @@ function App() {
               <img src={project.image} alt={project.title} />
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              <a href={project.repoUrl} target="_blank" rel="noreferrer" className="github-link">
-                View on GitHub
-              </a>
+              {project.repoUrl && (
+                <a href={project.repoUrl} target="_blank" rel="noreferrer" className="github-link">
+                  View on GitHub
+                </a>
+              )}
             </article>
           ))}
         </div>
@@ -246,7 +287,7 @@ function App() {
       </section>
 
       {!chatOpen && (
-        <button type="button" className="chat-bubble" onClick={() => setChatOpen(true)}>
+        <button type="button" className="chat-bubble" onClick={() => setChatOpen(true)} aria-label="Open chat assistant">
           Ask anything about me
         </button>
       )}
