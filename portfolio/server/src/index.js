@@ -33,7 +33,7 @@ app.use("/api/portfolio", portfolioRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/chat", chatRoutes);
 
-const start = async () => {
+const initializeDatabase = async () => {
   try {
     await connectDB();
     app.locals.dbConnected = true;
@@ -46,10 +46,14 @@ const start = async () => {
   } catch (error) {
     console.warn("MongoDB unavailable, using in-memory fallback:", error.message);
   }
+};
 
+const start = () => {
   app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
   });
+
+  void initializeDatabase();
 };
 
 start();
