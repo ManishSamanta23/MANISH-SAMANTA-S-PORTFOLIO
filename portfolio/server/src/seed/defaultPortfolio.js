@@ -1,6 +1,6 @@
 export const defaultPortfolio = {
   name: "Manish Samanta",
-  role: "Web Developer",
+  role: "Full Stack Developer",
   heroImage: "/assets/20240212_172736.jpg",
   about: [
     "Hi, I'm Manish Samanta - a tech enthusiast with a passion for Web Development and Generative AI. I'm currently pursuing my B.Tech in Computer Science and Engineering at Sister Nivedita University, and I'll be graduating in 2027.",
@@ -10,14 +10,21 @@ export const defaultPortfolio = {
   skills: [
     "HTML",
     "CSS",
+    "Tailwind CSS",
+    "React",
     "JavaScript",
+    "MongoDB",
+    "Express.js",
+    "Node.js",
     "Python",
     "MySQL",
     "C",
     "C++",
     "Flutter",
     "Git",
-    "GitHub"
+    "GitHub",
+    "Figma",
+    "VS Code"
   ],
   projects: [
     {
