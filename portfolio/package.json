@@ -7,9 +7,6 @@
     "dev:client": "npm run dev --prefix client",
     "install:all": "npm install; npm install --prefix server; npm install --prefix client"
   },
-  "dependencies": {
-    "firebase": "^11.9.1"
-  },
   "devDependencies": {
     "concurrently": "^9.0.1"
   }

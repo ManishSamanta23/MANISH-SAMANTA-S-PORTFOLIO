@@ -3,10 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="React client for portfolio MERN app" />
+    <meta name="theme-color" content="#0f172a" />
     <title>Manish Samanta | Portfolio</title>
+    <style>
+      :root {
+        --bg-a: #0f172a;
+        --bg-b: #134e4a;
+        --glow-a: rgba(245, 158, 11, 0.35);
+        --glow-b: rgba(45, 212, 191, 0.28);
+      }
+
+      html, body, #root {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 15% 15%, var(--glow-a), transparent 35%),
+          radial-gradient(circle at 80% 8%, var(--glow-b), transparent 42%),
+          linear-gradient(140deg, var(--bg-a), var(--bg-b));
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>This app requires JavaScript to run.</noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
