@@ -2,12 +2,14 @@
   "name": "portfolio-mern",
   "private": true,
   "scripts": {
+    "predev": "kill-port 5000 5173 5174 5175",
     "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
     "dev:server": "npm run dev --prefix server",
     "dev:client": "npm run dev --prefix client",
     "install:all": "npm install; npm install --prefix server; npm install --prefix client"
   },
   "devDependencies": {
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "kill-port": "^2.0.1"
   }
 }

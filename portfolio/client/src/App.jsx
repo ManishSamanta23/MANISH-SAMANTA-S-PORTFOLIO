@@ -140,6 +140,14 @@ function App() {
     }
   };
 
+  const resolveProjectImage = (image) => {
+    if (!image) return image;
+    if (image.includes("/assets/avaran.png") || image.includes("/assets/finance-dashboard.png")) {
+      return `${image.split("?")[0]}?v=4`;
+    }
+    return image;
+  };
+
   if (loading) {
     return <main className="status-screen" aria-live="polite">Loading your portfolio...</main>;
   }
@@ -232,14 +240,21 @@ function App() {
         <div className="project-grid">
           {portfolio.projects.map((project, idx) => (
             <article key={project.title} className="project-card reveal-up" style={{ animationDelay: `${idx * 90}ms` }}>
-              <img src={project.image} alt={project.title} />
+              <img src={resolveProjectImage(project.image)} alt={project.title} />
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-              {project.repoUrl && (
-                <a href={project.repoUrl} target="_blank" rel="noreferrer" className="github-link">
-                  View on GitHub
-                </a>
-              )}
+              <div className="project-links">
+                {project.repoUrl && (
+                  <a href={project.repoUrl} target="_blank" rel="noreferrer" className="github-link">
+                    View on GitHub
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="live-link">
+                    Live Demo
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>

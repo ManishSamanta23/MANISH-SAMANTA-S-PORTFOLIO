@@ -17,7 +17,7 @@ const answerFor = (text) => {
   }
 
   if (msg.includes("project")) {
-    return "I have built a Scientific Calculator, an Age Calculator, and a Tic-Tac-Toe Game.";
+    return "I have built a Scientific Calculator, a Tic-Tac-Toe Game, an Avaran app, and a Finance Dashboard.";
   }
 
   if (msg.includes("study") || msg.includes("college") || msg.includes("graduat")) {

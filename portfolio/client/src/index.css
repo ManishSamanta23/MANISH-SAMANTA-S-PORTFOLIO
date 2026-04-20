@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --max-width: 1180px;
+  --bg: #f5f7ff;
+  --text: #12162f;
+  --muted: #58607f;
+  --surface: rgba(255, 255, 255, 0.74);
+  --surface-strong: #ffffff;
+  --surface-elevated: rgba(255, 255, 255, 0.92);
+  --hero-grad-a: rgba(255, 255, 255, 0.96);
+  --hero-grad-b: rgba(244, 246, 255, 0.9);
+  --chat-grad-a: rgba(244, 246, 255, 0.55);
+  --chat-grad-b: rgba(255, 255, 255, 0.92);
+  --stroke: rgba(18, 22, 47, 0.11);
+  --brand: #ff6b5b;
+  --brand-2: #ff9d4d;
+  --accent: #19c7a5;
+  --accent-2: #6676ff;
+  --shadow: 0 22px 52px rgba(18, 22, 47, 0.12);
+}
+
+body.dark-theme {
+  --bg: #0d1125;
+  --text: #edf1ff;
+  --muted: #b5bfdc;
+  --surface: rgba(18, 23, 52, 0.74);
+  --surface-strong: #161d41;
+  --surface-elevated: rgba(22, 29, 65, 0.94);
+  --hero-grad-a: rgba(24, 31, 70, 0.96);
+  --hero-grad-b: rgba(15, 21, 49, 0.94);
+  --chat-grad-a: rgba(17, 24, 58, 0.86);
+  --chat-grad-b: rgba(12, 17, 43, 0.96);
+  --stroke: rgba(237, 241, 255, 0.12);
+  --brand: #ff907f;
+  --brand-2: #ffbf76;
+  --accent: #4be0c3;
+  --accent-2: #8d98ff;
+  --shadow: 0 24px 60px rgba(5, 8, 24, 0.54);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 12%, rgba(255, 186, 145, 0.34) 0%, rgba(255, 186, 145, 0) 36%),
+    radial-gradient(circle at 92% 28%, rgba(100, 208, 194, 0.28) 0%, rgba(100, 208, 194, 0) 40%),
+    linear-gradient(180deg, #fbfcff 0%, var(--bg) 48%, #eef1ff 100%);
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  filter: blur(36px);
+  opacity: 0.34;
+  animation: blobFloat 14s ease-in-out infinite;
+}
+
+.blob-a {
+  top: -5rem;
+  left: -7rem;
+  background: #ff9f43;
+}
+
+.blob-b {
+  top: 32vh;
+  right: -6rem;
+  background: #5a67ff;
+  animation-delay: 2.5s;
+}
+
+.blob-c {
+  bottom: -8rem;
+  left: 35%;
+  background: #27c7a8;
+  animation-delay: 4.5s;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  will-change: transform, opacity;
+}
+
+.reveal-up.in-view {
+  animation: revealUp 0.72s cubic-bezier(0.2, 0.65, 0.2, 1) forwards;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes navDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroCardGlow {
+  0%,
+  100% {
+    box-shadow: var(--shadow);
+  }
+  50% {
+    box-shadow: 0 28px 62px rgba(18, 22, 47, 0.2);
+  }
+}
+
+@keyframes blobFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.05);
+  }
+}
+
+@keyframes profileFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 12px 24px rgba(255, 90, 95, 0.34);
+  }
+  50% {
+    box-shadow: 0 16px 32px rgba(255, 90, 95, 0.5);
+  }
+}
+
+@keyframes bubbleNudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes chatIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes typing {
+  to {
+    transform: translateY(-3px);
+    opacity: 0.65;
+  }
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  display: inline-block;
+  margin: 0 2px;
+  animation: typing 1s infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+  }
+}

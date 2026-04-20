@@ -31,19 +31,29 @@ export const defaultPortfolio = {
       title: "Scientific Calculator",
       description: "A web-based calculator with advanced mathematical functions like trigonometry and logarithms.",
       image: "/assets/image1.png",
-      repoUrl: "https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git"
-    },
-    {
-      title: "Age Calculator",
-      description: "An application to calculate age based on date of birth with multilingual support.",
-      image: "/assets/image2.png",
-      repoUrl: "https://github.com/ManishSamanta23/AGE_CALCULATOR.git"
+      repoUrl: "https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git",
+      liveUrl: ""
     },
     {
       title: "Tic-Tac-Toe Game",
       description: "A classic two-player game with a responsive and interactive interface.",
       image: "/assets/image3.png",
-      repoUrl: "https://github.com/ManishSamanta23/tic_tac_toe_game.git"
+      repoUrl: "https://github.com/ManishSamanta23/tic_tac_toe_game.git",
+      liveUrl: ""
+    },
+    {
+      title: "Avaran",
+      description: "A full stack web application with a modern UI and production deployment.",
+      image: "/assets/avaran.png?v=4",
+      repoUrl: "https://github.com/ManishSamanta23/Avaran",
+      liveUrl: "https://avaran-seven.vercel.app/"
+    },
+    {
+      title: "Finance Dashboard",
+      description: "A full stack finance dashboard for visualizing and managing financial data.",
+      image: "/assets/finance-dashboard.png?v=4",
+      repoUrl: "https://github.com/ManishSamanta23/finance-dashboard",
+      liveUrl: "https://finance-dashboard-xi-hazel.vercel.app/"
     }
   ],
   socialLinks: {

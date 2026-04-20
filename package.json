@@ -4,5 +4,11 @@
   "scripts": {
     "dev": "npm --prefix portfolio run dev",
     "install:all": "npm --prefix portfolio run install:all"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.2"
   }
 }
