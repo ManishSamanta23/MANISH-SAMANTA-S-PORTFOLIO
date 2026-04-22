@@ -28,20 +28,6 @@ export const defaultPortfolio = {
   ],
   projects: [
     {
-      title: "Scientific Calculator",
-      description: "A web-based calculator with advanced mathematical functions like trigonometry and logarithms.",
-      image: "/assets/image1.png",
-      repoUrl: "https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git",
-      liveUrl: ""
-    },
-    {
-      title: "Tic-Tac-Toe Game",
-      description: "A classic two-player game with a responsive and interactive interface.",
-      image: "/assets/image3.png",
-      repoUrl: "https://github.com/ManishSamanta23/tic_tac_toe_game.git",
-      liveUrl: ""
-    },
-    {
       title: "Avaran",
       description: "A full stack web application with a modern UI and production deployment.",
       image: "/assets/avaran.png?v=4",
@@ -54,6 +40,20 @@ export const defaultPortfolio = {
       image: "/assets/finance-dashboard.png?v=4",
       repoUrl: "https://github.com/ManishSamanta23/finance-dashboard",
       liveUrl: "https://finance-dashboard-xi-hazel.vercel.app/"
+    },
+    {
+      title: "Scientific Calculator",
+      description: "A web-based calculator with advanced mathematical functions like trigonometry and logarithms.",
+      image: "/assets/image1.png",
+      repoUrl: "https://github.com/ManishSamanta23/SCIENTIFIC_CALCULATOR.git",
+      liveUrl: ""
+    },
+    {
+      title: "Tic-Tac-Toe Game",
+      description: "A classic two-player game with a responsive and interactive interface.",
+      image: "/assets/image3.png",
+      repoUrl: "https://github.com/ManishSamanta23/tic_tac_toe_game.git",
+      liveUrl: ""
     }
   ],
   socialLinks: {
