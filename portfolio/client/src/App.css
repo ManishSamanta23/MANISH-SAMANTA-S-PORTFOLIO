@@ -271,6 +271,13 @@ section {
   overflow: hidden;
 }
 
+.skills {
+  background:
+    radial-gradient(circle at top right, rgba(102, 118, 255, 0.12), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(25, 199, 165, 0.1), transparent 28%),
+    var(--surface);
+}
+
 .about::before,
 .skills::before,
 .projects::before,
@@ -298,23 +305,27 @@ section {
   max-width: 920px;
   margin: 1.8rem 0 0;
   display: grid;
-  gap: 0.84rem;
-  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .skill-badge {
-  background: linear-gradient(140deg, var(--brand), var(--brand-2));
-  color: #fff;
+  background: linear-gradient(135deg, rgba(102, 118, 255, 0.14), rgba(25, 199, 165, 0.14));
+  color: var(--text);
   border-radius: 999px;
-  padding: 0.78rem;
+  padding: 0.88rem 1rem;
   text-align: center;
   font-weight: 600;
-  box-shadow: 0 12px 24px rgba(255, 107, 91, 0.26);
-  transition: transform 0.22s ease;
+  border: 1px solid rgba(102, 118, 255, 0.18);
+  box-shadow: 0 12px 24px rgba(18, 22, 47, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .skill-badge:hover {
   transform: translateY(-4px);
+  background: linear-gradient(135deg, rgba(102, 118, 255, 0.2), rgba(25, 199, 165, 0.18));
+  border-color: rgba(25, 199, 165, 0.34);
+  box-shadow: 0 16px 30px rgba(18, 22, 47, 0.12);
 }
 
 .skill-badge:active {

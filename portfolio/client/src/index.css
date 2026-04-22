@@ -3,41 +3,161 @@
 
 :root {
   --max-width: 1180px;
-  --bg: #f5f7ff;
-  --text: #12162f;
-  --muted: #58607f;
-  --surface: rgba(255, 255, 255, 0.74);
+  --bg: #f4f7fb;
+  --text: #0f172a;
+  --muted: #5b667f;
+  --surface: rgba(255, 255, 255, 0.78);
   --surface-strong: #ffffff;
-  --surface-elevated: rgba(255, 255, 255, 0.92);
-  --hero-grad-a: rgba(255, 255, 255, 0.96);
-  --hero-grad-b: rgba(244, 246, 255, 0.9);
-  --chat-grad-a: rgba(244, 246, 255, 0.55);
-  --chat-grad-b: rgba(255, 255, 255, 0.92);
-  --stroke: rgba(18, 22, 47, 0.11);
-  --brand: #ff6b5b;
-  --brand-2: #ff9d4d;
-  --accent: #19c7a5;
-  --accent-2: #6676ff;
-  --shadow: 0 22px 52px rgba(18, 22, 47, 0.12);
+  --surface-elevated: rgba(255, 255, 255, 0.94);
+  --hero-grad-a: rgba(255, 255, 255, 0.98);
+  --hero-grad-b: rgba(242, 246, 255, 0.92);
+  --chat-grad-a: rgba(242, 246, 255, 0.6);
+  --chat-grad-b: rgba(255, 255, 255, 0.95);
+  --stroke: rgba(15, 23, 42, 0.1);
+  --brand: #3b82f6;
+  --brand-2: #14b8a6;
+  --accent: #0f766e;
+  --accent-2: #4f46e5;
+  --shadow: 0 22px 52px rgba(15, 23, 42, 0.1);
 }
 
 body.dark-theme {
-  --bg: #0d1125;
-  --text: #edf1ff;
-  --muted: #b5bfdc;
-  --surface: rgba(18, 23, 52, 0.74);
-  --surface-strong: #161d41;
-  --surface-elevated: rgba(22, 29, 65, 0.94);
-  --hero-grad-a: rgba(24, 31, 70, 0.96);
-  --hero-grad-b: rgba(15, 21, 49, 0.94);
-  --chat-grad-a: rgba(17, 24, 58, 0.86);
-  --chat-grad-b: rgba(12, 17, 43, 0.96);
-  --stroke: rgba(237, 241, 255, 0.12);
-  --brand: #ff907f;
-  --brand-2: #ffbf76;
-  --accent: #4be0c3;
-  --accent-2: #8d98ff;
-  --shadow: 0 24px 60px rgba(5, 8, 24, 0.54);
+  --bg: #07111f;
+  --text: #e8eefc;
+  --muted: #aeb9d1;
+  --surface: rgba(10, 17, 31, 0.76);
+  --surface-strong: #0f172a;
+  --surface-elevated: rgba(15, 23, 42, 0.94);
+  --hero-grad-a: rgba(10, 18, 36, 0.98);
+  --hero-grad-b: rgba(15, 23, 42, 0.96);
+  --chat-grad-a: rgba(13, 22, 43, 0.84);
+  --chat-grad-b: rgba(9, 16, 31, 0.96);
+  --stroke: rgba(226, 232, 240, 0.12);
+  --brand: #60a5fa;
+  --brand-2: #2dd4bf;
+  --accent: #14b8a6;
+  --accent-2: #8b9cff;
+  --shadow: 0 24px 60px rgba(2, 6, 23, 0.54);
+}
+
+.style-executive {
+  --brand: #2f6fed;
+  --brand-2: #14b8a6;
+  --accent: #0f766e;
+  --accent-2: #4f46e5;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-strong: #ffffff;
+  --surface-elevated: rgba(255, 255, 255, 0.95);
+  --stroke: rgba(15, 23, 42, 0.1);
+  --shadow: 0 20px 46px rgba(15, 23, 42, 0.1);
+}
+
+.style-startup {
+  --brand: #2563eb;
+  --brand-2: #06b6d4;
+  --accent: #0891b2;
+  --accent-2: #6366f1;
+  --surface: rgba(255, 255, 255, 0.76);
+  --surface-strong: #ffffff;
+  --surface-elevated: rgba(255, 255, 255, 0.96);
+  --stroke: rgba(37, 99, 235, 0.12);
+  --shadow: 0 24px 58px rgba(37, 99, 235, 0.12);
+}
+
+.style-luxury {
+  --bg: #060816;
+  --text: #f4f1ea;
+  --muted: #c7c1b6;
+  --surface: rgba(12, 14, 28, 0.8);
+  --surface-strong: #101322;
+  --surface-elevated: rgba(16, 19, 34, 0.96);
+  --hero-grad-a: rgba(17, 20, 39, 0.98);
+  --hero-grad-b: rgba(9, 11, 24, 0.98);
+  --chat-grad-a: rgba(13, 15, 28, 0.92);
+  --chat-grad-b: rgba(8, 10, 18, 0.98);
+  --stroke: rgba(212, 175, 55, 0.18);
+  --brand: #d4af37;
+  --brand-2: #f0d77f;
+  --accent: #b08d57;
+  --accent-2: #e4c66a;
+  --shadow: 0 30px 72px rgba(0, 0, 0, 0.5);
+}
+
+.style-luxury {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0) 32%),
+    radial-gradient(circle at 82% 18%, rgba(240, 215, 127, 0.08) 0%, rgba(240, 215, 127, 0) 30%),
+    linear-gradient(180deg, #0b0d18 0%, #060816 52%, #090b14 100%);
+}
+
+.style-luxury .blob-a {
+  background: #8a6a1b;
+}
+
+.style-luxury .blob-b {
+  background: #f0d77f;
+}
+
+.style-luxury .blob-c {
+  background: #5b4520;
+}
+
+.style-luxury .hero-content,
+.style-luxury .about,
+.style-luxury .skills,
+.style-luxury .projects,
+.style-luxury .contact,
+.style-luxury nav,
+.style-luxury .chatbot-overlay {
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+}
+
+.style-luxury .section-heading,
+.style-luxury .logo,
+.style-luxury .hero-content h1,
+.style-luxury .project-card h3 {
+  letter-spacing: -0.03em;
+}
+
+.style-luxury .skill-badge {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(240, 215, 127, 0.12));
+  border-color: rgba(212, 175, 55, 0.22);
+}
+
+.style-luxury .github-link,
+.style-luxury .live-link,
+.style-luxury .chat-bubble,
+.style-luxury .contact-form button,
+.style-luxury .chatbot-input button,
+.style-luxury .user-message .message-content {
+  background: linear-gradient(135deg, #a67c00, #f0d77f);
+}
+
+.style-luxury .ai-message .message-content,
+.style-luxury .typing-indicator .message-content {
+  background: rgba(212, 175, 55, 0.14);
+}
+
+.style-luxury .nav-links a:hover,
+.style-luxury .theme-toggle:hover,
+.style-luxury .social-links a:hover {
+  background: rgba(212, 175, 55, 0.14);
+}
+
+.style-luxury .hero-content::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.18), transparent 30%),
+    radial-gradient(circle at 100% 20%, rgba(240, 215, 127, 0.1), transparent 26%);
+}
+
+.style-luxury .section-panel,
+.style-luxury .section-panel,
+.style-luxury .about,
+.style-luxury .skills,
+.style-luxury .projects,
+.style-luxury .contact {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
 }
 
 * {
@@ -56,9 +176,10 @@ body {
   line-height: 1.6;
   color: var(--text);
   background:
-    radial-gradient(circle at 10% 12%, rgba(255, 186, 145, 0.34) 0%, rgba(255, 186, 145, 0) 36%),
-    radial-gradient(circle at 92% 28%, rgba(100, 208, 194, 0.28) 0%, rgba(100, 208, 194, 0) 40%),
-    linear-gradient(180deg, #fbfcff 0%, var(--bg) 48%, #eef1ff 100%);
+    radial-gradient(circle at 12% 12%, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0) 36%),
+    radial-gradient(circle at 88% 22%, rgba(20, 184, 166, 0.1) 0%, rgba(20, 184, 166, 0) 38%),
+    radial-gradient(circle at 50% 100%, rgba(79, 70, 229, 0.08) 0%, rgba(79, 70, 229, 0) 44%),
+    linear-gradient(180deg, #fbfcff 0%, var(--bg) 52%, #edf3ff 100%);
 }
 
 button,

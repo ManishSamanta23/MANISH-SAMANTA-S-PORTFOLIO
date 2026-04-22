@@ -4,6 +4,7 @@ const initialForm = { name: "", email: "", message: "" };
 
 function AppTailwind() {
   const [darkTheme, setDarkTheme] = useState(false);
+  const [stylePreset, setStylePreset] = useState("executive");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [portfolio, setPortfolio] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -148,6 +149,12 @@ function AppTailwind() {
     return image;
   };
 
+  const styleModes = [
+    { id: "executive", label: "Minimal executive" },
+    { id: "startup", label: "Modern startup" },
+    { id: "luxury", label: "Dark luxury" }
+  ];
+
   if (loading) {
     return <main className="grid min-h-screen place-items-center text-[color:var(--muted)]">Loading your portfolio...</main>;
   }
@@ -162,6 +169,12 @@ function AppTailwind() {
   const mutedText = "text-[color:var(--muted)]";
   const actionButton = "inline-flex items-center justify-center rounded-full px-5 py-3 text-base font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:shadow-lg";
   const linkButton = "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5";
+  const selectedSkills = portfolio.skills.slice(0, 6);
+  const portfolioStats = [
+    { label: "Projects", value: String(portfolio.projects.length).padStart(2, "0") },
+    { label: "Skills", value: String(portfolio.skills.length).padStart(2, "0") },
+    { label: "Links", value: String(Object.values(portfolio.socialLinks || {}).filter(Boolean).length).padStart(2, "0") }
+  ];
 
   return (
     <>
@@ -171,7 +184,7 @@ function AppTailwind() {
         <span className="blob blob-c" />
       </div>
 
-      <main className="relative min-h-screen overflow-x-hidden text-[color:var(--text)]">
+      <main className={`style-${stylePreset} relative min-h-screen overflow-x-hidden text-[color:var(--text)]`}>
         <nav className="sticky top-3 z-30 mx-auto mt-3 w-[calc(100%-1rem)] max-w-[var(--max-width)] rounded-[22px] border border-[color:var(--stroke)] bg-[color:var(--surface)] shadow-[var(--shadow)] backdrop-blur-xl">
           <div className="relative mx-auto flex w-full items-center justify-between gap-3 px-4 py-3 sm:px-5">
             <div className="font-['Space_Grotesk',sans-serif] text-base font-semibold tracking-tight sm:text-lg">
@@ -219,31 +232,79 @@ function AppTailwind() {
         </nav>
 
         <section id="home" className="mx-auto max-w-[1180px] px-4 pt-10 md:pt-16 lg:pt-20">
-          <div className="grid gap-4 rounded-[32px] border border-[color:var(--stroke)] bg-[linear-gradient(145deg,var(--hero-grad-a),var(--hero-grad-b))] p-4 shadow-[var(--shadow)] md:gap-6 md:p-6 lg:grid-cols-[220px_1fr] lg:items-center lg:gap-8 lg:p-9 xl:grid-cols-[240px_1fr] xl:gap-10 xl:p-10" style={{ animation: "heroCardGlow 7s ease-in-out infinite" }}>
-            <img
-              src={portfolio.heroImage}
-              alt="Profile"
-              className="order-2 mx-auto h-28 w-28 rounded-full border-[4px] border-[color:var(--brand)] object-cover shadow-[0_16px_34px_rgba(18,22,47,0.18)] sm:h-36 sm:w-36 md:h-40 md:w-40 lg:order-1 lg:mx-0 lg:h-[210px] lg:w-[210px] xl:h-[220px] xl:w-[220px]"
-              style={{ animation: "profileFloat 4.2s ease-in-out infinite" }}
-            />
+          <div className="grid gap-5 rounded-[32px] border border-[color:var(--stroke)] bg-[linear-gradient(145deg,var(--hero-grad-a),var(--hero-grad-b))] p-5 shadow-[var(--shadow)] md:gap-6 md:p-7 lg:grid-cols-[minmax(220px,260px)_1fr] lg:items-center lg:gap-8 lg:p-10" style={{ animation: "heroCardGlow 7s ease-in-out infinite" }}>
+            <div className="order-2 flex flex-col items-center gap-3 lg:order-1 lg:items-start">
+              <div className="relative">
+                <img
+                  src={portfolio.heroImage}
+                  alt="Profile"
+                  className="h-32 w-32 rounded-full border-[5px] border-[color:var(--brand)] object-cover shadow-[0_18px_38px_rgba(15,23,42,0.2)] sm:h-40 sm:w-40 lg:h-[220px] lg:w-[220px]"
+                  style={{ animation: "profileFloat 4.2s ease-in-out infinite" }}
+                />
+                <span className="absolute inset-x-4 -bottom-2 h-3 rounded-full bg-[rgba(15,23,42,0.08)] blur-md dark:bg-[rgba(226,232,240,0.14)]" />
+              </div>
 
-            <div className="order-1 space-y-3 text-center lg:order-2 lg:space-y-4 lg:text-left">
-              <p className="inline-flex items-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent-2)] shadow-sm sm:text-sm">
+              <div className="grid w-full max-w-sm grid-cols-3 gap-2 text-center">
+                {portfolioStats.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-3 py-3 shadow-sm">
+                    <div className="text-sm font-semibold text-[color:var(--text)]">{item.value}</div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted)]">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="order-1 space-y-4 text-center lg:order-2 lg:text-left">
+              <p className="inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[color:var(--accent-2)] shadow-sm sm:text-xs lg:justify-start">
                 Full Stack Developer
               </p>
-              <h1
-                className="font-['Space_Grotesk',sans-serif] text-2xl font-bold tracking-[-0.05em] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-                style={{ lineHeight: 1.04 }}
-              >
-                Hi, I&apos;m {portfolio.name}
-              </h1>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-2)] sm:text-sm md:text-base">{portfolio.role}</p>
-              <p className={`${mutedText} mx-auto max-w-2xl text-sm sm:text-base lg:mx-0 lg:text-lg`}>{portfolio.about?.[0]}</p>
+              <div className="space-y-2">
+                <h1 className="font-['Space_Grotesk',sans-serif] text-3xl font-bold tracking-[-0.05em] sm:text-4xl md:text-5xl lg:text-6xl" style={{ lineHeight: 1.02 }}>
+                  Hi, I&apos;m {portfolio.name}
+                </h1>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-2)] sm:text-base">
+                  {portfolio.role}
+                </p>
+              </div>
+
+              <p className={`${mutedText} mx-auto max-w-2xl text-sm sm:text-base lg:mx-0 lg:text-lg`}>
+                {portfolio.about?.[0]}
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+                <a href="#projects" className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--brand),var(--accent-2))] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_28px_rgba(59,130,246,0.24)] transition duration-200 hover:-translate-y-0.5">
+                  View Projects
+                </a>
+                <a href="#contact" className="inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-5 py-3 text-sm font-semibold text-[color:var(--text)] transition duration-200 hover:-translate-y-0.5 hover:shadow-lg">
+                  Contact Me
+                </a>
+              </div>
+
               <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
-                {portfolio.skills.slice(0, 4).map((skill) => (
+                {styleModes.map((mode) => {
+                  const active = stylePreset === mode.id;
+                  return (
+                    <button
+                      key={mode.id}
+                      type="button"
+                      onClick={() => setStylePreset(mode.id)}
+                      className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition duration-200 ${
+                        active
+                          ? "border-[color:var(--brand)] bg-[linear-gradient(135deg,var(--brand),var(--accent-2))] text-white shadow-[0_14px_24px_rgba(59,130,246,0.22)]"
+                          : "border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-[color:var(--muted)] hover:-translate-y-0.5 hover:shadow-md"
+                      }`}
+                    >
+                      {mode.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
+                {selectedSkills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-3 py-1 text-xs font-semibold text-[color:var(--muted)] shadow-sm"
+                    className="rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-3 py-1 text-xs font-medium text-[color:var(--muted)] shadow-sm"
                   >
                     {skill}
                   </span>
@@ -258,12 +319,22 @@ function AppTailwind() {
             <h2 className={sectionHeading} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
               About Me
             </h2>
-            <div className="mt-4 space-y-4 text-center text-base sm:text-lg md:text-left">
-              {portfolio.about.map((line, idx) => (
-                <p key={line} className={`reveal-up ${mutedText}`} style={{ animationDelay: `${idx * 120}ms` }}>
-                  {line}
-                </p>
-              ))}
+            <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)] lg:items-start">
+              <div className="space-y-4 text-center text-base sm:text-lg md:text-left">
+                {portfolio.about.map((line, idx) => (
+                  <p key={line} className={`reveal-up ${mutedText}`} style={{ animationDelay: `${idx * 120}ms` }}>
+                    {line}
+                  </p>
+                ))}
+              </div>
+
+              <div className="rounded-[24px] border border-[color:var(--stroke)] bg-[color:var(--surface-elevated)] p-5 shadow-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-2)]">Profile Snapshot</p>
+                <div className="mt-3 space-y-3 text-sm leading-6 text-[color:var(--muted)]">
+                  <p>Building modern web applications with a focus on clarity, responsiveness, and practical user value.</p>
+                  <p>Comfortable across frontend, backend, and tooling, with a learning path that includes AI and mobile development.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -277,7 +348,7 @@ function AppTailwind() {
               {portfolio.skills.map((skill, idx) => (
                 <div
                   key={skill}
-                  className="reveal-up rounded-full bg-gradient-to-r from-[color:var(--brand)] to-[color:var(--brand-2)] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_12px_24px_rgba(255,107,91,0.26)] transition-transform duration-200 hover:-translate-y-1"
+                  className="reveal-up rounded-full border border-[color:var(--stroke)] bg-[linear-gradient(135deg,rgba(59,130,246,0.1),rgba(20,184,166,0.1))] px-4 py-3 text-center text-sm font-semibold text-[color:var(--text)] shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[rgba(20,184,166,0.34)] hover:shadow-[0_16px_30px_rgba(15,23,42,0.12)]"
                   style={{ animationDelay: `${idx * 60}ms` }}
                 >
                   {skill}
@@ -296,7 +367,7 @@ function AppTailwind() {
               {portfolio.projects.map((project, idx) => (
                 <article
                   key={project.title}
-                  className="reveal-up group flex h-full flex-col overflow-hidden rounded-[28px] border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] shadow-[0_18px_38px_rgba(18,22,47,0.1)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_28px_42px_rgba(18,22,47,0.16)]"
+                  className="reveal-up group flex h-full flex-col overflow-hidden rounded-[28px] border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] shadow-[0_18px_38px_rgba(15,23,42,0.1)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_28px_42px_rgba(15,23,42,0.16)]"
                   style={{ animationDelay: `${idx * 90}ms` }}
                 >
                   <div className="overflow-hidden">
