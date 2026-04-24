@@ -151,7 +151,6 @@ function AppTailwind() {
 
   const styleModes = [
     { id: "executive", label: "Minimal executive" },
-    { id: "startup", label: "Modern startup" },
     { id: "luxury", label: "Dark luxury" }
   ];
 
