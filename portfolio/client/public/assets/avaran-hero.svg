@@ -1,0 +1,92 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B163D"/>
+      <stop offset="100%" stop-color="#08163A"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FF7A33"/>
+      <stop offset="100%" stop-color="#FFB14C"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#15244D"/>
+      <stop offset="100%" stop-color="#101D43"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#031026" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <circle cx="230" cy="150" r="130" fill="#203E8A" opacity="0.24" filter="url(#blur)"/>
+  <circle cx="1060" cy="130" r="150" fill="#FF7A33" opacity="0.10" filter="url(#blur)"/>
+  <circle cx="1080" cy="610" r="180" fill="#4059B8" opacity="0.18" filter="url(#blur)"/>
+
+  <g opacity="0.12">
+    <rect x="0" y="80" width="1280" height="1" fill="#FFFFFF"/>
+  </g>
+
+  <g transform="translate(30 18)">
+    <path d="M21 6L34 32H8L21 6Z" fill="#FF7A33"/>
+    <path d="M21 15L27 28H15L21 15Z" fill="#FFFFFF" opacity="0.96"/>
+    <path d="M21 0C10 0 1 9 1 20C1 31 10 40 21 40C32 40 41 31 41 20C41 9 32 0 21 0Z" stroke="#FF7A33" stroke-width="2" opacity="0.9"/>
+    <text x="52" y="31" fill="#FFFFFF" font-size="26" font-family="Georgia, 'Times New Roman', serif" font-weight="700">Avaran</text>
+  </g>
+
+  <g transform="translate(980 16)">
+    <rect x="0" y="0" width="110" height="50" rx="12" fill="#1B274E" stroke="#2A3560"/>
+    <text x="55" y="32" text-anchor="middle" fill="#F4F7FF" font-size="18" font-family="Arial, sans-serif" font-weight="700">Login</text>
+  </g>
+
+  <g transform="translate(1100 16)">
+    <rect x="0" y="0" width="150" height="50" rx="12" fill="url(#accent)"/>
+    <text x="75" y="32" text-anchor="middle" fill="#FFFFFF" font-size="18" font-family="Arial, sans-serif" font-weight="700">Get Started</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <text x="640" y="214" text-anchor="middle" fill="#FFFFFF" font-size="108" font-family="Georgia, 'Times New Roman', serif" font-weight="700" letter-spacing="-2">Your income,</text>
+    <text x="640" y="338" text-anchor="middle" fill="#FF7A33" font-size="114" font-family="Georgia, 'Times New Roman', serif" font-weight="700" letter-spacing="-2">protected.</text>
+  </g>
+
+  <text x="640" y="394" text-anchor="middle" fill="#9EABC9" font-size="28" font-family="Arial, sans-serif" letter-spacing="0.2" opacity="0.92">
+    India's first smart automated parametric insurance for delivery partners.
+  </text>
+  <text x="640" y="434" text-anchor="middle" fill="#9EABC9" font-size="28" font-family="Arial, sans-serif" letter-spacing="0.2" opacity="0.92">
+    Floods, AQI alerts, curfews — when disruptions stop your work, we pay automatically.
+  </text>
+
+  <g transform="translate(454 492)">
+    <rect x="0" y="0" width="240" height="52" rx="12" fill="url(#accent)"/>
+    <text x="120" y="32" text-anchor="middle" fill="#FFFFFF" font-size="17" font-family="Arial, sans-serif" font-weight="700">Get Protected Now</text>
+    <path d="M206 24H220" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M214 17L221 24L214 31" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(710 492)">
+    <rect x="0" y="0" width="110" height="52" rx="12" fill="#1B274E" stroke="#2A3560"/>
+    <text x="55" y="32" text-anchor="middle" fill="#F4F7FF" font-size="17" font-family="Arial, sans-serif" font-weight="700">Login</text>
+  </g>
+
+  <g transform="translate(330 628)" filter="url(#shadow)">
+    <rect x="0" y="0" width="620" height="112" rx="20" fill="url(#panel)" stroke="#273A6D"/>
+    <g opacity="0.24" stroke="#FFFFFF">
+      <line x1="160" y1="22" x2="160" y2="90"/>
+      <line x1="320" y1="22" x2="320" y2="90"/>
+      <line x1="470" y1="22" x2="470" y2="90"/>
+    </g>
+    <text x="82" y="50" fill="#FF7A33" font-size="31" font-family="Arial, sans-serif" font-weight="800">15M+</text>
+    <text x="82" y="78" fill="#A5B0D1" font-size="16" font-family="Arial, sans-serif">Gig Workers</text>
+
+    <text x="227" y="50" fill="#FF7A33" font-size="31" font-family="Arial, sans-serif" font-weight="800">₹29</text>
+    <text x="227" y="78" fill="#A5B0D1" font-size="16" font-family="Arial, sans-serif">Per Week</text>
+
+    <text x="386" y="50" fill="#FF7A33" font-size="31" font-family="Arial, sans-serif" font-weight="800">2 hrs</text>
+    <text x="386" y="78" fill="#A5B0D1" font-size="16" font-family="Arial, sans-serif">Auto Payout</text>
+
+    <text x="545" y="50" fill="#FF7A33" font-size="31" font-family="Arial, sans-serif" font-weight="800">5</text>
+    <text x="525" y="78" fill="#A5B0D1" font-size="16" font-family="Arial, sans-serif">Trigger Types</text>
+  </g>
+</svg>

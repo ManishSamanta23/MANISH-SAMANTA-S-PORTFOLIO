@@ -3,9 +3,13 @@ export const defaultPortfolio = {
   role: "Full Stack Developer",
   heroImage: "/assets/20240212_172736.jpg",
   about: [
-    "Hi, I'm Manish Samanta - a tech enthusiast with a passion for Web Development and Generative AI. I'm currently pursuing my B.Tech in Computer Science and Engineering at Sister Nivedita University, and I'll be graduating in 2027.",
-    "I'm continuously building my skills in HTML, CSS, JavaScript, Python, and MySQL, along with a strong foundation in C and C++. I'm also exploring AI tools, learning machine learning, and diving into Flutter to develop cross-platform mobile apps.",
-    "I enjoy learning new technologies, staying updated with trends, and turning creative ideas into smart digital solutions."
+    "I am a Computer Science student and Full-Stack (MERN) Developer passionate about building real-world, scalable, and user-focused applications.",
+    "I enjoy transforming ideas into complete products by combining clean frontend design with efficient backend systems.",
+    "I have hands-on experience with the MERN stack (MongoDB, Express.js, React.js, Node.js) along with strong fundamentals in HTML, CSS, JavaScript, and Python. I have also explored mobile app development using Flutter and gained foundational knowledge in Artificial Intelligence through certification.",
+    "I have developed projects like a Personal Finance Dashboard, where I implemented features such as income and expense tracking, category-wise analysis, and interactive data visualization. The application uses MongoDB for efficient data storage and REST APIs for seamless communication between frontend and backend.",
+    "Additionally, I built Avaran, a full-stack web application focused on delivering a responsive, user-friendly interface with optimized performance and clean architecture.",
+    "My key skills include Full-Stack Development (MERN Stack), Frontend Development (HTML, CSS, JavaScript, React), Backend Development (Node.js, Express.js, REST APIs), Database Management (MongoDB, MySQL basics), Programming Languages (JavaScript, Python), and Basic Mobile App Development (Flutter).",
+    "I am continuously learning and improving my skills by building projects and exploring new technologies. I enjoy solving real-world problems through code and aim to grow as a software engineer while contributing to impactful and scalable solutions."
   ],
   skills: [
     "HTML",
@@ -30,7 +34,7 @@ export const defaultPortfolio = {
     {
       title: "Avaran",
       description: "A full stack web application with a modern UI and production deployment.",
-      image: "/assets/avaran.png?v=4",
+      image: "/assets/avaran-hero.svg?v=1",
       repoUrl: "https://github.com/ManishSamanta23/Avaran",
       liveUrl: "https://avaran-seven.vercel.app/"
     },

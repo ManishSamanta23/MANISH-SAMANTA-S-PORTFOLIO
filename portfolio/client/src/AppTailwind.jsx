@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 const initialForm = { name: "", email: "", message: "" };
 
 function AppTailwind() {
-  const [darkTheme, setDarkTheme] = useState(false);
   const [stylePreset, setStylePreset] = useState("executive");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [portfolio, setPortfolio] = useState(null);
@@ -38,10 +37,6 @@ function AppTailwind() {
 
     loadPortfolio();
   }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("dark-theme", darkTheme);
-  }, [darkTheme]);
 
   useEffect(() => {
     const onResize = () => {
@@ -165,6 +160,9 @@ function AppTailwind() {
   const navButton = "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition duration-200 hover:-translate-y-0.5";
   const sectionPanel = "relative overflow-hidden rounded-[28px] border border-[color:var(--stroke)] bg-[color:var(--surface)] shadow-[var(--shadow)]";
   const sectionHeading = "font-['Space_Grotesk',sans-serif] text-center md:text-left text-[clamp(1.8rem,2.6vw,2.6rem)] tracking-[-0.02em] text-[color:var(--text)]";
+  const eyebrowText = "text-xs font-semibold uppercase tracking-[0.24em]";
+  const bodyCopy = "text-sm leading-7 sm:text-base lg:text-lg";
+  const cardBodyCopy = "text-sm leading-6 sm:text-base";
   const mutedText = "text-[color:var(--muted)]";
   const actionButton = "inline-flex items-center justify-center rounded-full px-5 py-3 text-base font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:shadow-lg";
   const linkButton = "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5";
@@ -218,14 +216,6 @@ function AppTailwind() {
               <a className={`${navButton} text-[color:var(--text)]`} href="#contact" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </a>
-              <button
-                className={`${navButton} border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-[color:var(--text)]`}
-                type="button"
-                onClick={() => setDarkTheme((v) => !v)}
-                title="Toggle Theme"
-              >
-                {darkTheme ? "☀️" : "🌙"}
-              </button>
             </div>
           </div>
         </nav>
@@ -254,19 +244,19 @@ function AppTailwind() {
             </div>
 
             <div className="order-1 space-y-4 text-center lg:order-2 lg:text-left">
-              <p className="inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[color:var(--accent-2)] shadow-sm sm:text-xs lg:justify-start">
+              <p className={`inline-flex items-center justify-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-2 ${eyebrowText} text-[color:var(--accent-2)] shadow-sm lg:justify-start`}>
                 Full Stack Developer
               </p>
               <div className="space-y-2">
-                <h1 className="font-['Space_Grotesk',sans-serif] text-3xl font-bold tracking-[-0.05em] sm:text-4xl md:text-5xl lg:text-6xl" style={{ lineHeight: 1.02 }}>
+                <h1 className="font-['Space_Grotesk',sans-serif] text-[clamp(2.4rem,5vw,4.8rem)] font-bold tracking-[-0.05em]" style={{ lineHeight: 1.02 }}>
                   Hi, I&apos;m {portfolio.name}
                 </h1>
-                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-2)] sm:text-base">
+                <p className={`text-[color:var(--accent-2)] ${eyebrowText}`}>
                   {portfolio.role}
                 </p>
               </div>
 
-              <p className={`${mutedText} mx-auto max-w-2xl text-sm sm:text-base lg:mx-0 lg:text-lg`}>
+              <p className={`${mutedText} ${bodyCopy} mx-auto max-w-2xl lg:mx-0`}>
                 {portfolio.about?.[0]}
               </p>
 
@@ -303,7 +293,7 @@ function AppTailwind() {
                 {selectedSkills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-3 py-1 text-xs font-medium text-[color:var(--muted)] shadow-sm"
+                    className="rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-3 py-1 text-xs font-medium text-[color:var(--muted)] shadow-sm sm:text-sm"
                   >
                     {skill}
                   </span>
@@ -319,7 +309,7 @@ function AppTailwind() {
               About Me
             </h2>
             <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(280px,0.7fr)] lg:items-start">
-              <div className="space-y-4 text-center text-base sm:text-lg md:text-left">
+              <div className={`space-y-4 text-center ${bodyCopy} md:text-left`}>
                 {portfolio.about.map((line, idx) => (
                   <p key={line} className={`reveal-up ${mutedText}`} style={{ animationDelay: `${idx * 120}ms` }}>
                     {line}
@@ -328,8 +318,8 @@ function AppTailwind() {
               </div>
 
               <div className="rounded-[24px] border border-[color:var(--stroke)] bg-[color:var(--surface-elevated)] p-5 shadow-sm">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-2)]">Profile Snapshot</p>
-                <div className="mt-3 space-y-3 text-sm leading-6 text-[color:var(--muted)]">
+                <p className={`${eyebrowText} text-[color:var(--accent-2)]`}>Profile Snapshot</p>
+                <div className={`mt-3 space-y-3 ${cardBodyCopy} text-[color:var(--muted)]`}>
                   <p>Building modern web applications with a focus on clarity, responsiveness, and practical user value.</p>
                   <p>Comfortable across frontend, backend, and tooling, with a learning path that includes AI and mobile development.</p>
                 </div>
@@ -347,7 +337,7 @@ function AppTailwind() {
               {portfolio.skills.map((skill, idx) => (
                 <div
                   key={skill}
-                  className="reveal-up rounded-full border border-[color:var(--stroke)] bg-[linear-gradient(135deg,rgba(59,130,246,0.1),rgba(20,184,166,0.1))] px-4 py-3 text-center text-sm font-semibold text-[color:var(--text)] shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[rgba(20,184,166,0.34)] hover:shadow-[0_16px_30px_rgba(15,23,42,0.12)]"
+                  className="reveal-up rounded-full border border-[color:var(--stroke)] bg-[linear-gradient(135deg,rgba(59,130,246,0.1),rgba(20,184,166,0.1))] px-4 py-3 text-center text-sm font-semibold text-[color:var(--text)] shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[rgba(20,184,166,0.34)] hover:shadow-[0_16px_30px_rgba(15,23,42,0.12)] sm:text-base"
                   style={{ animationDelay: `${idx * 60}ms` }}
                 >
                   {skill}
@@ -378,8 +368,8 @@ function AppTailwind() {
                   </div>
                   <div className="flex flex-1 flex-col gap-4 p-5">
                     <div>
-                      <h3 className="text-xl font-bold tracking-tight text-[color:var(--text)]">{project.title}</h3>
-                      <p className={`mt-3 text-[color:var(--muted)]`}>{project.description}</p>
+                      <h3 className="text-lg font-bold tracking-tight text-[color:var(--text)] sm:text-xl">{project.title}</h3>
+                      <p className={`mt-3 ${cardBodyCopy} text-[color:var(--muted)]`}>{project.description}</p>
                     </div>
                     <div className="mt-auto flex flex-wrap gap-3">
                       {project.repoUrl && (
@@ -405,7 +395,7 @@ function AppTailwind() {
             <h2 className={sectionHeading} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
               Contact Me
             </h2>
-            <p className={`mt-3 max-w-3xl text-base ${mutedText}`}>Feel free to reach out for collaborations or just a chat.</p>
+            <p className={`mt-3 max-w-3xl ${bodyCopy} ${mutedText}`}>Feel free to reach out for collaborations or just a chat.</p>
 
             <form className="mt-6 grid gap-4 md:grid-cols-2" onSubmit={submitContact}>
               <input
@@ -478,11 +468,11 @@ function AppTailwind() {
         )}
 
         {chatOpen && (
-          <aside className="fixed bottom-20 left-3 right-3 z-[1200] flex max-h-[70vh] w-auto flex-col overflow-hidden rounded-[24px] border border-[color:var(--stroke)] bg-[color:var(--surface-elevated)] shadow-[0_30px_70px_rgba(18,22,47,0.28)] animate-[chatIn_250ms_cubic-bezier(0.2,0.75,0.2,1)] sm:left-auto sm:right-4 sm:w-[min(380px,95vw)]">
-            <div className="flex items-center gap-3 bg-[linear-gradient(130deg,var(--accent-2),var(--accent))] px-4 py-3 text-white">
+          <aside className="fixed bottom-20 left-3 right-3 z-[1200] flex max-h-[70vh] w-auto flex-col overflow-hidden rounded-[24px] border border-[color:var(--stroke)] bg-[color:var(--chat-shell)] shadow-[0_30px_70px_rgba(18,22,47,0.28)] animate-[chatIn_250ms_cubic-bezier(0.2,0.75,0.2,1)] sm:left-auto sm:right-4 sm:w-[min(380px,95vw)]">
+            <div className="flex items-center gap-3 bg-[linear-gradient(130deg,var(--accent-2),var(--accent))] px-4 py-3 text-[color:var(--chat-header-text)]">
               <img src={portfolio.heroImage} alt="Profile" className="h-9 w-9 rounded-full object-cover" />
-              <h3 className="flex-1 text-sm font-semibold">Chat with Me</h3>
-              <button className="text-xl leading-none" type="button" onClick={() => setChatOpen(false)}>
+              <h3 className="flex-1 text-base font-semibold sm:text-lg">Chat with Me</h3>
+              <button className="text-lg leading-none sm:text-xl" type="button" onClick={() => setChatOpen(false)}>
                 ×
               </button>
             </div>
@@ -492,10 +482,10 @@ function AppTailwind() {
                 {chatMessages.map((m, idx) => (
                   <div className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`} key={`${m.role}-${idx}`}>
                     <div
-                      className={`max-w-[82%] rounded-2xl px-3 py-2 text-sm leading-6 ${
+                      className={`max-w-[82%] rounded-2xl px-3 py-2 text-sm leading-6 sm:text-base ${
                         m.role === "user"
-                          ? "bg-[linear-gradient(130deg,var(--brand),var(--brand-2))] text-white"
-                          : "bg-[rgba(102,118,255,0.12)] text-[color:var(--text)]"
+                          ? "bg-[color:var(--chat-user-bg)] text-[color:var(--chat-user-text)]"
+                          : "bg-[color:var(--chat-ai-bg)] text-[color:var(--chat-ai-text)]"
                       }`}
                     >
                       {m.content}
@@ -505,7 +495,7 @@ function AppTailwind() {
 
                 {chatTyping && (
                   <div className="flex justify-start">
-                    <div className="rounded-2xl bg-[rgba(102,118,255,0.12)] px-3 py-2 text-sm leading-6 text-[color:var(--text)]">
+                    <div className="rounded-2xl bg-[color:var(--chat-ai-bg)] px-3 py-2 text-sm leading-6 text-[color:var(--chat-ai-text)]">
                       Typing <span className="dot" /> <span className="dot" /> <span className="dot" />
                     </div>
                   </div>
@@ -519,12 +509,12 @@ function AppTailwind() {
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Type a message..."
                 onKeyDown={(e) => e.key === "Enter" && sendChat()}
-                className="min-w-0 flex-1 rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]"
+                className="min-w-0 flex-1 rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] px-4 py-3 text-sm text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)] sm:text-base"
               />
               <button
                 type="button"
                 onClick={sendChat}
-                className="rounded-full bg-[linear-gradient(130deg,var(--accent-2),var(--accent))] px-4 py-3 text-white transition hover:-translate-y-0.5"
+                className="rounded-full bg-[linear-gradient(130deg,var(--accent-2),var(--accent))] px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 sm:text-base"
               >
                 ➤
               </button>
