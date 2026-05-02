@@ -45,6 +45,23 @@ function AppTailwind() {
   }, []);
 
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem("stylePreset");
+      if (saved) setStylePreset(saved);
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("stylePreset", stylePreset);
+    } catch (e) {
+      // ignore
+    }
+  }, [stylePreset]);
+
+  useEffect(() => {
     const nodes = document.querySelectorAll(".reveal-up");
     if (!nodes.length) return;
 
@@ -162,6 +179,27 @@ function AppTailwind() {
               {portfolio.name}&apos;s Portfolio
             </div>
 
+            {/* style toggle for large screens */}
+            <div className="hidden lg:flex lg:items-center lg:gap-2">
+              {styleModes.map((mode) => {
+                const active = stylePreset === mode.id;
+                return (
+                  <button
+                    key={mode.id}
+                    type="button"
+                    onClick={() => setStylePreset(mode.id)}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition duration-200 ${
+                      active
+                        ? "border-[color:var(--brand)] bg-[linear-gradient(135deg,var(--brand),var(--accent-2))] text-white shadow-[0_10px_20px_rgba(59,130,246,0.16)]"
+                        : "border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-[color:var(--muted)] hover:-translate-y-0.5 hover:shadow-md"
+                    }`}
+                  >
+                    {mode.label}
+                  </button>
+                );
+              })}
+            </div>
+
             <button
               type="button"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-lg lg:hidden"
@@ -175,6 +213,28 @@ function AppTailwind() {
             <div
               className={`absolute left-4 right-4 top-[calc(100%+0.75rem)] grid origin-top gap-2 rounded-2xl border border-[color:var(--stroke)] bg-[color:var(--surface-strong)] p-3 shadow-[var(--shadow)] transition duration-200 lg:static lg:flex lg:translate-y-0 lg:items-center lg:gap-2 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none ${mobileMenuOpen ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-[0.98] opacity-0 lg:pointer-events-auto lg:opacity-100 lg:scale-100"}`}
             >
+              <div className="flex gap-2 lg:hidden">
+                {styleModes.map((mode) => {
+                  const active = stylePreset === mode.id;
+                  return (
+                    <button
+                      key={mode.id}
+                      type="button"
+                      onClick={() => {
+                        setStylePreset(mode.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition duration-200 ${
+                        active
+                          ? "border-[color:var(--brand)] bg-[linear-gradient(135deg,var(--brand),var(--accent-2))] text-white"
+                          : "border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-[color:var(--muted)]"
+                      }`}
+                    >
+                      {mode.label}
+                    </button>
+                  );
+                })}
+              </div>
               <a className={`${navButton} text-[color:var(--text)]`} href="#home" onClick={() => setMobileMenuOpen(false)}>
                 Home
               </a>
@@ -243,25 +303,7 @@ function AppTailwind() {
                 </a>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
-                {styleModes.map((mode) => {
-                  const active = stylePreset === mode.id;
-                  return (
-                    <button
-                      key={mode.id}
-                      type="button"
-                      onClick={() => setStylePreset(mode.id)}
-                      className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] transition duration-200 ${
-                        active
-                          ? "border-[color:var(--brand)] bg-[linear-gradient(135deg,var(--brand),var(--accent-2))] text-white shadow-[0_14px_24px_rgba(59,130,246,0.22)]"
-                          : "border-[color:var(--stroke)] bg-[color:var(--surface-strong)] text-[color:var(--muted)] hover:-translate-y-0.5 hover:shadow-md"
-                      }`}
-                    >
-                      {mode.label}
-                    </button>
-                  );
-                })}
-              </div>
+              {/* style toggle moved to navbar; removed duplicate here */}
 
               <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
                 {selectedSkills.map((skill) => (
