@@ -406,7 +406,7 @@ function AppTailwind() {
           </div>
         </section>
 
-        <section id="contact" className="mx-auto w-full max-w-[1060px] px-4 pt-6 pb-14 md:pt-7 md:pb-8">
+        <footer id="contact" className="mx-auto mt-8 w-full max-w-[1060px] border-t border-[color:var(--stroke)] px-4 pt-8 pb-14 md:pt-9 md:pb-8">
           <div className={`${sectionPanel} ${panelPadding}`}>
             <h2 className={sectionHeading} style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
               Contact Me
@@ -450,8 +450,12 @@ function AppTailwind() {
                 <p className="mt-1 text-sm text-[color:var(--muted)]">Usually within 24 hours.</p>
               </div>
             </div>
+
+            <div className="mt-5 rounded-2xl border border-[color:var(--stroke)] bg-[linear-gradient(135deg,var(--surface),var(--surface-elevated))] px-5 py-4 text-center">
+              <p className="mt-1 text-sm text-[color:var(--muted)]">© {new Date().getFullYear()} {portfolio.name}. All rights reserved.</p>
+            </div>
           </div>
-        </section>
+        </footer>
 
         {!chatOpen && (
           <button

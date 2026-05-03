@@ -175,6 +175,12 @@ section {
   scroll-margin-top: 88px;
 }
 
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.1rem 4.2rem;
+}
+
 .section-heading {
   margin: 0 0 1.2rem;
   text-align: left;

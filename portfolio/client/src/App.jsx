@@ -260,47 +260,6 @@ function App() {
         </div>
       </section>
 
-      <section id="contact" className="contact">
-        <h2 className="section-heading">Contact Me</h2>
-        <p>Feel free to reach out for collaborations or just a chat.</p>
-
-        <form className="contact-form reveal-up" onSubmit={submitContact}>
-          <input
-            type="text"
-            placeholder="Your name"
-            value={form.name}
-            onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Your email"
-            value={form.email}
-            onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
-            required
-          />
-          <textarea
-            rows="4"
-            placeholder="Your message"
-            value={form.message}
-            onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
-            required
-          />
-          <button type="submit">Send Message</button>
-        </form>
-
-        {contactStatus && <p className="contact-status">{contactStatus}</p>}
-
-        <div className="social-links">
-          <a href={portfolio.socialLinks.linkedIn} target="_blank" rel="noreferrer" title="LinkedIn">
-            🔗
-          </a>
-          <a href={portfolio.socialLinks.github} target="_blank" rel="noreferrer" title="GitHub">
-            🐙
-          </a>
-        </div>
-      </section>
-
       {!chatOpen && (
         <button type="button" className="chat-bubble" onClick={() => setChatOpen(true)} aria-label="Open chat assistant">
           Ask anything about me
@@ -346,6 +305,49 @@ function App() {
           </div>
         </aside>
       )}
+
+      <footer className="site-footer">
+        <section id="contact" className="contact">
+          <h2 className="section-heading">Contact Me</h2>
+          <p>Feel free to reach out for collaborations or just a chat.</p>
+
+          <form className="contact-form reveal-up" onSubmit={submitContact}>
+            <input
+              type="text"
+              placeholder="Your name"
+              value={form.name}
+              onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your email"
+              value={form.email}
+              onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
+              required
+            />
+            <textarea
+              rows="4"
+              placeholder="Your message"
+              value={form.message}
+              onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
+              required
+            />
+            <button type="submit">Send Message</button>
+          </form>
+
+          {contactStatus && <p className="contact-status">{contactStatus}</p>}
+
+          <div className="social-links">
+            <a href={portfolio.socialLinks.linkedIn} target="_blank" rel="noreferrer" title="LinkedIn">
+              🔗
+            </a>
+            <a href={portfolio.socialLinks.github} target="_blank" rel="noreferrer" title="GitHub">
+              🐙
+            </a>
+          </div>
+        </section>
+      </footer>
     </>
   );
 }
