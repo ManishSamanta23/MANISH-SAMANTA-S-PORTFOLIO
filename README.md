@@ -1,7 +1,6 @@
 # MY PORTFOLIO (MANISH SAMANTA)
 
 > Full-stack portfolio built with React, Vite, Express, MongoDB, and a Gemini-backed chat fallback.
-
 ![Status](https://img.shields.io/badge/STATUS-ACTIVE-111827?style=for-the-badge)
 ![Frontend](https://img.shields.io/badge/FRONTEND-React%2018%20%2B%20Vite%205-0EA5E9?style=for-the-badge)
 ![Backend](https://img.shields.io/badge/BACKEND-Node.js%20%2B%20Express%204-22C55E?style=for-the-badge)
@@ -11,22 +10,41 @@
 ## What This Project Is
 
 This project is a full-stack portfolio platform with:
-
 - React + Vite frontend using a custom Tailwind-based UI layer
 - Express + MongoDB backend
 - Portfolio, contact, and chat APIs
 - Automatic seed data and in-memory fallback support when MongoDB is unavailable
 
 This repository uses a nested workspace:
-
-The default mounted UI is `AppTailwind.jsx`; `App.jsx` is also present in the client source tree.
 - root: command entry point
 - `portfolio/client`: frontend app
 - `portfolio/server`: backend API
 
+The default mounted UI is `AppTailwind.jsx`; `App.jsx` is also present in the client source tree.
+
 ## Key Features
-CORS + dotenv
-Google Generative AI SDK (`@google/generative-ai`)
+
+- `GET /api/health`: health check endpoint
+- `GET /api/portfolio`: returns portfolio content from MongoDB or in-memory fallback
+- `POST /api/contact`: validates and stores contact messages
+- `POST /api/chat`: uses Gemini when configured, otherwise returns rule-based replies
+- First-run seed for default portfolio data
+- Graceful fallback mode without MongoDB
+
+## Tech Stack
+
+### Frontend
+
+- React 18
+- Vite 5
+- Tailwind CSS 4
+
+### Backend
+
+- Node.js + Express 4
+- MongoDB + Mongoose 8
+- CORS + dotenv
+- Google Generative AI SDK (`@google/generative-ai`)
 
 ## Project Structure
 
@@ -161,9 +179,9 @@ Request body:
 
 ```json
 {
-   "name": "Your Name",
-   "email": "you@example.com",
-   "message": "Hello"
+  "name": "Your Name",
+  "email": "you@example.com",
+  "message": "Hello"
 }
 ```
 
@@ -219,25 +237,6 @@ The local fallback responds to questions about skills, projects, study details, 
 The `portfolio` dev script runs `kill-port` for common local ports before startup.
 
 ### MongoDB Connection Errors
-
-- Verify MongoDB is running
-- Verify `MONGO_URI` in `portfolio/server/.env`
-- Continue in fallback mode for local development if needed
-
-### Chat Not Using Gemini
-
-- Confirm `GEMINI_API_KEY` exists in `portfolio/server/.env`
-- Restart backend after updating `.env`
-
-## Production Notes
-
-- Build frontend: `npm run build --prefix portfolio/client`
-- Start backend: `npm start --prefix portfolio/server`
-- Set secure production values for `MONGO_URI`, `CLIENT_ORIGIN`, and `GEMINI_API_KEY`
-
-## License
-
-This project is for personal portfolio and learning use.
 
 - Verify MongoDB is running
 - Verify `MONGO_URI` in `portfolio/server/.env`
