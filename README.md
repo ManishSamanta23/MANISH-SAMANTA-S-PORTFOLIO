@@ -1,6 +1,6 @@
 # MY PORTFOLIO (MANISH SAMANTA)
 
-> Smart, full-stack developer portfolio built with MERN and optional Gemini-powered chat.
+> Full-stack portfolio built with React, Vite, Express, MongoDB, and a Gemini-backed chat fallback.
 
 ![Status](https://img.shields.io/badge/STATUS-ACTIVE-111827?style=for-the-badge)
 ![Frontend](https://img.shields.io/badge/FRONTEND-React%2018%20%2B%20Vite%205-0EA5E9?style=for-the-badge)
@@ -12,40 +12,21 @@
 
 This project is a full-stack portfolio platform with:
 
-- React + Vite + Tailwind frontend
+- React + Vite frontend using a custom Tailwind-based UI layer
 - Express + MongoDB backend
-- Chat API with optional Gemini integration
-- Automatic seed data and in-memory fallback support when DB is unavailable
+- Portfolio, contact, and chat APIs
+- Automatic seed data and in-memory fallback support when MongoDB is unavailable
 
 This repository uses a nested workspace:
 
+The default mounted UI is `AppTailwind.jsx`; `App.jsx` is also present in the client source tree.
 - root: command entry point
 - `portfolio/client`: frontend app
 - `portfolio/server`: backend API
 
 ## Key Features
-
-- `GET /api/portfolio`: returns portfolio content
-- `POST /api/contact`: stores contact messages
-- `POST /api/chat`: AI/rule-based assistant responses
-- `GET /api/health`: health check endpoint
-- First-run seed for default portfolio data
-- Graceful fallback mode without MongoDB
-
-## Tech Stack
-
-### Frontend
-
-- React 18
-- Vite 5
-- Tailwind CSS 4
-
-### Backend
-
-- Node.js + Express 4
-- MongoDB + Mongoose 8
-- CORS + dotenv
-- Google Generative AI SDK (`@google/generative-ai`)
+CORS + dotenv
+Google Generative AI SDK (`@google/generative-ai`)
 
 ## Project Structure
 
@@ -57,15 +38,26 @@ This repository uses a nested workspace:
       |-- client/
       |   |-- package.json
       |   `-- src/
+      |       |-- App.jsx
+      |       |-- AppTailwind.jsx
+      |       |-- index.css
+      |       `-- main.jsx
       `-- server/
             |-- .env.example
             |-- package.json
             `-- src/
                   |-- index.js
-                  |-- config/db.js
+                  |-- config/
+                  |   `-- db.js
                   |-- models/
+                  |   |-- ContactMessage.js
+                  |   `-- Portfolio.js
                   |-- routes/
-                  `-- seed/defaultPortfolio.js
+                  |   |-- chatRoutes.js
+                  |   |-- contactRoutes.js
+                  |   `-- portfolioRoutes.js
+                  `-- seed/
+                      `-- defaultPortfolio.js
 ```
 
 ## Quick Start
@@ -74,7 +66,6 @@ This repository uses a nested workspace:
 
 - Node.js 18+
 - npm 9+
-- MongoDB (local or remote URI, recommended)
 
 MongoDB is optional for development because fallback mode is built in.
 
@@ -89,6 +80,8 @@ npm run install:all
 ```bash
 copy portfolio\server\.env.example portfolio\server\.env
 ```
+
+If you are on macOS or Linux, use `cp portfolio/server/.env.example portfolio/server/.env` instead.
 
 ### 3) Run Development Servers
 
@@ -115,8 +108,9 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 Notes:
 
+- `MONGO_URI` is required for normal database mode. If it is missing or MongoDB is unavailable, the server runs in in-memory fallback mode.
 - If `GEMINI_API_KEY` is missing, chat uses local rule-based replies.
-- If MongoDB is unavailable, server still runs in fallback mode.
+- `CLIENT_ORIGIN` controls the allowed browser origin for CORS.
 
 ## Scripts
 
@@ -159,6 +153,7 @@ Behavior:
 
 - Returns MongoDB data when connected
 - Falls back to seeded default data if DB is unavailable
+- Excludes the hidden `Age Calculator` project from the response
 
 ### `POST /api/contact`
 
@@ -184,6 +179,10 @@ Fallback response:
 { "message": "Message saved in fallback mode" }
 ```
 
+Validation:
+
+- `name`, `email`, and `message` are required
+
 ### `POST /api/chat`
 
 Request body:
@@ -203,11 +202,15 @@ Behavior:
 - With `GEMINI_API_KEY`: uses Gemini (`gemini-2.5-flash`)
 - Without key or on API failure: uses local rule-based answers
 
+The local fallback responds to questions about skills, projects, study details, and contact links.
+
 ## Runtime Notes
 
 - Server starts even if MongoDB is down.
 - On successful DB connection, default portfolio is seeded only when collection is empty.
 - CORS origin defaults to `http://localhost:5173` and is configurable via `CLIENT_ORIGIN`.
+- The frontend loads portfolio data from `/api/portfolio` and opens the chat UI from that data.
+- Contact submissions are stored in MongoDB when available, otherwise in memory for the current run.
 
 ## Troubleshooting
 
@@ -216,6 +219,25 @@ Behavior:
 The `portfolio` dev script runs `kill-port` for common local ports before startup.
 
 ### MongoDB Connection Errors
+
+- Verify MongoDB is running
+- Verify `MONGO_URI` in `portfolio/server/.env`
+- Continue in fallback mode for local development if needed
+
+### Chat Not Using Gemini
+
+- Confirm `GEMINI_API_KEY` exists in `portfolio/server/.env`
+- Restart backend after updating `.env`
+
+## Production Notes
+
+- Build frontend: `npm run build --prefix portfolio/client`
+- Start backend: `npm start --prefix portfolio/server`
+- Set secure production values for `MONGO_URI`, `CLIENT_ORIGIN`, and `GEMINI_API_KEY`
+
+## License
+
+This project is for personal portfolio and learning use.
 
 - Verify MongoDB is running
 - Verify `MONGO_URI` in `portfolio/server/.env`
