@@ -452,7 +452,7 @@ function AppTailwind() {
             </div>
 
             <div className="mt-5 rounded-2xl border border-[color:var(--stroke)] bg-[linear-gradient(135deg,var(--surface),var(--surface-elevated))] px-5 py-4 text-center">
-              <p className="mt-1 text-sm text-[color:var(--muted)]">© {new Date().getFullYear()} {portfolio.name}. All rights reserved.</p>
+              <p className="mt-1 text-sm text-[color:var(--muted)]">© {new Date().getFullYear()} {portfolio.name}. All rights reserved .</p>
             </div>
           </div>
         </footer>
